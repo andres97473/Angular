@@ -1,0 +1,17 @@
+>> Instalar angular, ejecutar consola como administrador
+npm install -g @angular/cli
+
+>> Crear nuevo proyecto llamado my-app
+ng new my-app
+
+>> Iniciar live reload
+ng serve -o
+
+>> Se puede eliminar la carpeta de node_module para quitarle peso al subir a git y restaurarla con el siguiente comando
+npm install
+
+
+
+
+
+
