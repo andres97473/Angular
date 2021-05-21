@@ -6,8 +6,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./footer.component.css']
 })
 export class FooterComponent {
+  
+  anio:number;
 
-  anio= new Date().getFullYear();
+  constructor (){
+    
+    this.anio= new Date().getFullYear();
+
+  }
+
 
 
 }

@@ -17,7 +17,18 @@ ng generate component "ruta_del_nuevo_componente"
 ng g c components/footer
 
 
+>> Instalar bootstrap en el proyecto
+npm install bootstrap --save
+npm install jquery --save
+npm install popper.js --save
 
-
-
-
+>> una vez instaladas las librerias debemos indicar a angular que las utilice, esto se hace en el angular.json
+                        "styles": [
+                            "src/styles.css",
+                            "node_modules/bootstrap/dist/css/bootstrap.min.css"
+                        ],
+                        "scripts": [
+                            "node_modules/jquery/dist/jquery.slim.min.js",
+                            "node_modules/popper.js/dist/umd/popper.min.js",
+                            "node_modules/bootstrap/dist/js/bootstrap.min.js"
+                        ]
