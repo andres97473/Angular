@@ -12,6 +12,12 @@ npm install
 
 
 
+>> Crear componentes de forma automatica
+ng generate component "ruta_del_nuevo_componente"
+ng g c components/footer
+
+
+
 
 
 
