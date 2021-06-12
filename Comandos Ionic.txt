@@ -1,0 +1,8 @@
+>> instalar ionic
+npm install -g @ionic/cli
+
+>> crear aplicacion ionic 
+ionic start myApp tabs
+
+>> arrancar el servicio
+ionic serve
