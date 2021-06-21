@@ -1,6 +1,6 @@
 >> Ingresar usuario en consola
-git config --global user.name "John Doe"
-git config --global user.email johndoe@example.com
+git config --global user.name "andres97473"
+git config --global user.email andres97473@hotmail.com
 
 1. Subir cambios al repositorio
 
