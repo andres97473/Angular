@@ -9,3 +9,12 @@ ionic serve
 
 >> crear un servicio para centralizar la informacion
 ionic g s services/deseos
+
+>> crear una nueva pagina
+ionic g page pages/agregar
+
+>> crear un modulo para contener componentes, servicos, etc..
+ionic g m components
+
+>> crear un componente
+ionic g c components/listas
