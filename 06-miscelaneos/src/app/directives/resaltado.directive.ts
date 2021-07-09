@@ -9,16 +9,26 @@ export class ResaltadoDirective {
   constructor( private el:ElementRef) { 
     console.log("Directiva llamada");
     // el.nativeElement.style.backgroundColor = "yellow";
+    this.nuevoColor="";
         
   }
   
+  @Input ("appResaltado") nuevoColor:string;
 
   @HostListener('mouseenter') mouseEntro(){
-    this.el.nativeElement.style.backgroundColor = "yellow";
+    
+    console.log(this.nuevoColor);
+
+    this.resaltar(this.nuevoColor || 'yellow');
+
   }
 
   @HostListener('mouseleave') mouseSalio(){
     this.el.nativeElement.style.backgroundColor = null;
+  }
+
+  private resaltar( color:string){
+    this.el.nativeElement.style.backgroundColor = color;
   }
 
 }
