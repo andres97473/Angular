@@ -32,3 +32,10 @@ npm install popper.js --save
                             "node_modules/popper.js/dist/umd/popper.min.js",
                             "node_modules/bootstrap/dist/js/bootstrap.min.js"
                         ]
+
+
+>> Instalar sweetalert2
+npm i sweetalert2 --save
+
+>> Desinstalar sweetalert2
+npm uninstall sweetalert2

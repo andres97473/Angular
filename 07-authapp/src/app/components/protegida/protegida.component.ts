@@ -8,12 +8,15 @@ import { AuthService } from '../../services/auth.service';
 })
 export class ProtegidaComponent implements OnInit {
 
+  perfil:any={};
+
   constructor( public auth: AuthService ) { }
 
   ngOnInit() {
     console.log('ngOnInit protegida');
     this.auth.userProfile$.subscribe( perfil => {
       console.log(perfil);
+      this.perfil=perfil;
     });
   }
 
