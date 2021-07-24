@@ -7,8 +7,9 @@ git config --global user.email andres97473@hotmail.com
 >> Agregar carpeta a los cambios
 git add .
 
+
 >> Agregar el commit y le ponemos un mensaje
-git commit -m "Primer Commit"
+git commit -m "Commit 2021-07-23.19.16"
 
 >> Subir los cambios al repositorio
 git push
