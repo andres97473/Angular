@@ -39,3 +39,8 @@ npm i sweetalert2 --save
 
 >> Desinstalar sweetalert2
 npm uninstall sweetalert2
+
+
+
+>> Instalar libreria de firebase angular AngularFire2
+npm install firebase @angular/fire --save
