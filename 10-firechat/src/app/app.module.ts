@@ -6,12 +6,16 @@ import { AppComponent } from './app.component';
 
 import { FormsModule } from '@angular/forms';
 
+// angularfirebase
 import { AngularFireModule } from'@angular/fire';
 import { AngularFirestoreModule } from'@angular/fire/firestore';
 import { AngularFireAuthModule } from'@angular/fire/auth';
 
 import { environment } from '../environments/environment';
+
+// components
 import { ChatComponent } from './components/chat/chat.component';
+import { LoginComponent } from './components/login/login.component';
 
 // services
 import { ChatService } from './providers/chat.service';
@@ -20,7 +24,8 @@ import { ChatService } from './providers/chat.service';
 @NgModule({
   declarations: [
     AppComponent,
-    ChatComponent
+    ChatComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
