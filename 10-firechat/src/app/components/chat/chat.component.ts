@@ -13,8 +13,14 @@ export class ChatComponent implements OnInit {
 
   mensaje: string="";
   elemento: any;
+  loading : boolean;
+  loadingMensajes : boolean;
+  
 
   constructor( public _cs: ChatService ) { 
+    this.loading= false;
+    this.loadingMensajes= false;
+
     this._cs.cargarMensajes().subscribe( () => {
 
                               setTimeout( () => {
@@ -23,13 +29,42 @@ export class ChatComponent implements OnInit {
 
                               }, 20)
                              });
+    
   }
 
   ngOnInit(){
 
     this.elemento = document.getElementById('app-mensajes');
 
+    setTimeout( () => {
+      this.loading=true;
+    }, 1000);
+    
+
   }
+
+  verMas(i: number ){      
+    
+    
+    this._cs.verMas(i);
+    this._cs.cargarMensajes().subscribe( () => {
+
+      setTimeout( () => {
+        
+        this.elemento.scrollDown = this.elemento.scrollHeight;
+
+      }, 20)
+     });
+
+     setTimeout( () => {
+      this.loadingMensajes=true;
+    }, 500);
+
+    this.loadingMensajes=false;
+
+  }
+
+  
 
   enviarMensaje( mensaje: string ){
 
