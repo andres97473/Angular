@@ -16,6 +16,30 @@
     border-radius: 20px;
 }
 
+.button-mensaje-enviado {
+    display: inline-block;
+    border-radius: 10px;
+    background-color: #2570e0;
+    border: none;
+    color: #FFFFFF;
+    font-size: 15px;
+    padding: 10px;
+    transition: all 0.5s;
+    margin: 2px;
+}
+
+.button-mensaje-recibido {
+    display: inline-block;
+    border-radius: 10px;
+    background-color: #ececec;
+    border: none;
+    color: #1f1f1f;
+    font-size: 15px;
+    padding: 10px;
+    transition: all 0.5s;
+    margin: 2px;
+}
+
 .app-mensajes {
     overflow-y: scroll;
     height: 270px;
@@ -35,6 +59,10 @@
 
 .font-small {
     font-size: 10px;
+}
+
+.font-medium {
+    font-size: 15px;
 }
 
 
