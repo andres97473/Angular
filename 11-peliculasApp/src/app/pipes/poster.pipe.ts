@@ -5,12 +5,12 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class PosterPipe implements PipeTransform {
 
-  transform(poster: string ): string {
+  transform(poster: string|null ): string | null {
 
-    if(poster){
-      return `https://image.tmdb.org/t/p/w500${ poster }`;
-    } else{
+    if(!poster || null ){
       return './assets/no-image.jpg';
+    } else{
+      return `https://image.tmdb.org/t/p/w500${ poster }`;
     }
   }
 

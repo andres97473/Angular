@@ -5,6 +5,10 @@ import { PeliculaComponent } from './pelicula/pelicula.component';
 import { BuscarComponent } from './buscar/buscar.component';
 import { ComponentsModule } from '../components/components.module';
 
+import { RatingModule } from 'ng-starrating';
+
+import { PipesModule } from '../pipes/pipes.module';
+
 
 
 @NgModule({
@@ -15,7 +19,9 @@ import { ComponentsModule } from '../components/components.module';
   ],
   imports: [
     CommonModule,
-    ComponentsModule
+    ComponentsModule,
+    RatingModule,
+    PipesModule
   ]
 })
 export class PagesModule { }
