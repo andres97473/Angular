@@ -5,7 +5,11 @@ import { Injectable } from '@angular/core';
 })
 export class HeatMapService {
 
+  // array que solo guarda las coordenadas
   puntos:number[][][]
+
+  // objeto para manejar mas datos de las coordenadas
+  geoJson={};
 
   constructor() {
 
