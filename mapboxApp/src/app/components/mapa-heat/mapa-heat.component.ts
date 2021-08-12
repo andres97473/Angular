@@ -3,6 +3,7 @@ import { environment } from '../../../environments/environment.prod';
 
 import * as Mapboxgl from 'mapbox-gl';
 import { Geometry } from 'src/app/interfaces/points-response';
+import { HeatMapService } from '../../services/heat-map.service';
 
 @Component({
   selector: 'app-mapa-heat',
@@ -13,32 +14,13 @@ export class MapaHeatComponent implements OnInit {
 
   mapa: Mapboxgl.Map | undefined;
 
-  longitud = -120;
-  latitud = 50;
+  longitud = -77.58750114;
+  latitud = 0.77133285;
+  zoom = 11;  
 
-  puntos= {
-    "type": "FeatureCollection",
-    "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
-    "features": 
-    [
-        { "type": "Feature", "properties": { "id": "ak16994521", "mag": 2.3, "time": 1507425650893, "felt": null, "tsunami": 0 }, "geometry": { "type": "Point", "coordinates": [ -151.5129, 63.1016, 0.0 ] } },
-        { "type": "Feature", "properties": { "id": "ak16994519", "mag": 1.7, "time": 1507425289659, "felt": null, "tsunami": 0 }, "geometry": { "type": "Point", "coordinates": [ -150.4048, 63.1224, 105.5 ] } },
-        { "type": "Feature", "properties": { "id": "ak16994517", "mag": 1.6, "time": 1507424832518, "felt": null, "tsunami": 0 }, "geometry": { "type": "Point", "coordinates": [ -151.3597, 63.0781, 0.0 ] } },
-        { "type": "Feature", "properties": { "id": "ci38021336", "mag": 1.42, "time": 1507423898710, "felt": null, "tsunami": 0 }, "geometry": { "type": "Point", "coordinates": [ -118.497, 34.299667, 7.64 ] } },
-        { "type": "Feature", "properties": { "id": "us2000b2nn", "mag": 4.2, "time": 1507422626990, "felt": null, "tsunami": 0 }, "geometry": { "type": "Point", "coordinates": [ -87.6901, 12.0623, 46.41 ] } },
-        { "type": "Feature", "properties": { "id": "ak16994510", "mag": 1.6, "time": 1507422449194, "felt": null, "tsunami": 0 }, "geometry": { "type": "Point", "coordinates": [ -151.5053, 63.0719, 0.0 ] } },
-        { "type": "Feature", "properties": { "id": "us2000b2nb", "mag": 4.6, "time": 1507420784440, "felt": null, "tsunami": 0 }, "geometry": { "type": "Point", "coordinates": [ -178.4576, -20.2873, 614.26 ] } },
-        { "type": "Feature", "properties": { "id": "ak16994298", "mag": 2.4, "time": 1507419370097, "felt": null, "tsunami": 0 }, "geometry": { "type": "Point", "coordinates": [ -148.789, 63.1725, 7.5 ] } },
-        { "type": "Feature", "properties": { "id": "nc72905861", "mag": 1.39, "time": 1507418785100, "felt": null, "tsunami": 0 }, "geometry": { "type": "Point", "coordinates": [ -120.993164, 36.421833, 6.37 ] } },
-        { "type": "Feature", "properties": { "id": "ci38021304", "mag": 1.11, "time": 1507418426010, "felt": null, "tsunami": 0 }, "geometry": { "type": "Point", "coordinates": [ -117.0155, 33.656333, 12.37 ] } },
-        { "type": "Feature", "properties": { "id": "ak16994293", "mag": 1.5, "time": 1507417256497, "felt": null, "tsunami": 0 }, "geometry": { "type": "Point", "coordinates": [ -151.512, 63.0879, 10.8 ] } },
-        { "type": "Feature", "properties": { "id": "ak16994287", "mag": 2.0, "time": 1507413903714, "felt": null, "tsunami": 0 }, "geometry": { "type": "Point", "coordinates": [ -151.4378, 63.0933, 0.0 ] } },
-        { "type": "Feature", "properties": { "id": "ak16994285", "mag": 1.5, "time": 1507413670029, "felt": null, "tsunami": 0 }, "geometry": { "type": "Point", "coordinates": [ -149.6538, 63.2272, 96.8 ] } },
-        { "type": "Feature", "properties": { "id": "ak16994283", "mag": 1.4, "time": 1507413587442, "felt": null, "tsunami": 0 }, "geometry": { "type": "Point", "coordinates": [ -151.5325, 63.0844, 0.0 ] } },
-    ]
-  };
+  constructor( private _hm : HeatMapService ){
 
-  puntos2:Geometry[]=[];
+  }
   
 
   ngOnInit(): void {
@@ -49,18 +31,34 @@ export class MapaHeatComponent implements OnInit {
       container: 'mapa-mapheat', // container ID
       style: 'mapbox://styles/mapbox/dark-v10', // style URL
       center: [ this.longitud, this.latitud ], // LNG, LAT
-      zoom: 2
-    }); 
-
-    this.crearMarcador( this.longitud, this.latitud );   
+      zoom: this.zoom      
+      
+    });    
+    
 	
 
     this.mapa.on('load', () => {
       // Add a geojson point source.
       // Heatmap layers also work with a vector tile source.
-      (this.mapa as any).addSource('earthquakes', {
+      (this.mapa as any).addSource('earthquakes', 
+      {
           'type': 'geojson',
-          'data': this.puntos
+          'data': 
+          {
+              'type': 'FeatureCollection',
+              'features':
+                  [
+                      {
+                          'type': 'Feature',
+                          'geometry':
+                          {
+                              'type': 'Polygon',
+                              'coordinates': this._hm.puntos
+                                  
+                          }
+                      }
+                  ]
+          }
           
       });
 
@@ -131,6 +129,10 @@ export class MapaHeatComponent implements OnInit {
                       1,
                       9,
                       0
+                    //   7,
+                    //   1,
+                    //   9,
+                    //   0
                   ]
               }
           },
@@ -192,19 +194,6 @@ export class MapaHeatComponent implements OnInit {
 
   }
 
-  
-  crearMarcador(lng: number, lat: number ){
 
-    const marker = new Mapboxgl.Marker({
-      draggable: true
-      }).setLngLat([ lng, lat ])
-        .addTo( (this.mapa as any ) );
-
-    marker.on('dragend', () => {
-      console.log( marker.getLngLat() );
-      
-    });
-
-  }
 
 }
