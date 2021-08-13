@@ -17,6 +17,50 @@ export class MapaHeatComponent implements OnInit {
   longitud = -77.58750114;
   latitud = 0.77133285;
   zoom = 13;
+
+  // color mapa de calor
+  hmColor:Array<string[] | number | string>=
+      [
+        'interpolate',
+        ['linear'],
+        ['heatmap-density'],
+          0,'rgba(33,102,172,0)',
+          0.2,'rgb(103,169,207)',
+          0.4,'rgb(209,229,240)',
+          0.6,'rgb(253,219,199)',
+          0.8,'rgb(239,138,98)',
+          1,'rgb(178,24,43)'
+    
+      ];
+  
+  // color blanco y azul
+  hmColor2:Array<string[] | number | string>=
+      [
+        'interpolate',
+        ['linear'],
+        ['heatmap-density'],
+          0, 'rgba(236,222,239,0)',
+          0.2, 'rgb(208,209,230)',
+          0.4, 'rgb(166,189,219)',
+          0.6, 'rgb(103,169,207)',
+          0.8, 'rgb(28,144,153)'
+    
+      ];
+
+  // color mapa de calor con amarillos y verdes
+  hmColor3:Array<string[] | number | string>=
+  [
+    'interpolate',
+    ['linear'],
+    ['heatmap-density'],
+      0,'rgba(236,222,239,0)',
+                          
+      0.2,'rgb(0, 255, 0)',
+      0.4,'rgb(100, 255, 0)',
+      0.6,'rgb(255, 255, 0)',
+      0.8,'rgb(127, 127, 0)',
+      1,'rgb(255, 0, 0)'
+  ];
   
 
   constructor( private _hm : HeatMapService ){
@@ -92,26 +136,7 @@ export class MapaHeatComponent implements OnInit {
                 ]
               },
               // assign color values be applied to points depending on their density
-              'heatmap-color': [
-                'interpolate',
-                ['linear'],
-                ['heatmap-density'],
-                // color blanco y azul
-                // 0, 'rgba(236,222,239,0)',
-                // 0.2, 'rgb(208,209,230)',
-                // 0.4, 'rgb(166,189,219)',
-                // 0.6, 'rgb(103,169,207)',
-                // 0.8, 'rgb(28,144,153)'
-
-                // color mapa de calor
-                0,'rgba(33,102,172,0)',
-                0.2,'rgb(103,169,207)',
-                0.4,'rgb(209,229,240)',
-                0.6,'rgb(253,219,199)',
-                0.8,'rgb(239,138,98)',
-                1,'rgb(178,24,43)'
-
-              ],
+              'heatmap-color': this.hmColor3,
               // increase radius as zoom increases
               'heatmap-radius': {
                 'stops': [
