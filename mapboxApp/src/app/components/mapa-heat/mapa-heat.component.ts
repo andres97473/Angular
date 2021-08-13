@@ -18,6 +18,9 @@ export class MapaHeatComponent implements OnInit {
   latitud = 0.77133285;
   zoom = 13;
 
+  styleMap1='mapbox://styles/mapbox/dark-v10';
+  styleMap2='mapbox://styles/mapbox/satellite-streets-v11';
+
   // color mapa de calor
   hmColor:Array<string[] | number | string>=
       [
@@ -55,11 +58,13 @@ export class MapaHeatComponent implements OnInit {
     ['heatmap-density'],
       0,'rgba(236,222,239,0)',
                           
-      0.2,'rgb(0, 255, 0)',
-      0.4,'rgb(100, 255, 0)',
+      0.2,'rgb(100, 255, 0)',
+      0.4,'rgb(225, 255, 0)',
       0.6,'rgb(255, 255, 0)',
-      0.8,'rgb(127, 127, 0)',
-      1,'rgb(255, 0, 0)'
+      0.8,'rgb(225, 225, 0)',
+      0.82,'rgb(240, 100, 0)',
+      0.87,'rgb(255, 50, 0)',
+      0.9,'rgb(255, 0, 0)',
   ];
   
 
@@ -73,8 +78,8 @@ export class MapaHeatComponent implements OnInit {
     ( Mapboxgl as any ).accessToken = environment.mapboxKey;
 
     this.mapa = new Mapboxgl.Map({
-      container: 'mapa-mapheat', // container ID
-      style: 'mapbox://styles/mapbox/dark-v10', // style URL
+      container: 'mapa-mapheat', // container ID      
+      style: this.styleMap1,
       center: [ this.longitud, this.latitud ], // LNG, LAT
       zoom: this.zoom      
       
@@ -136,7 +141,7 @@ export class MapaHeatComponent implements OnInit {
                 ]
               },
               // assign color values be applied to points depending on their density
-              'heatmap-color': this.hmColor3,
+              'heatmap-color': this.hmColor,
               // increase radius as zoom increases
               'heatmap-radius': {
                 'stops': [
