@@ -27,6 +27,9 @@ export class MapaHomeComponent implements OnInit {
       zoom: 16.6
     }); 
 
+    // controls
+    (this.mapa as any).addControl(new Mapboxgl.NavigationControl());
+
     this.crearMarcador( this.longitud, this.latitud );
 
   }

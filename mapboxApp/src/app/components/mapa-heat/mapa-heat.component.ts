@@ -16,7 +16,8 @@ export class MapaHeatComponent implements OnInit {
 
   longitud = -77.58750114;
   latitud = 0.77133285;
-  zoom = 13;  
+  zoom = 13;
+  
 
   constructor( private _hm : HeatMapService ){
 
@@ -38,27 +39,33 @@ export class MapaHeatComponent implements OnInit {
 	
 
       this.mapa.on('load', () => {
+
+        // controls
+        (this.mapa as any).addControl(new Mapboxgl.NavigationControl());
+
+
           // Add a geojson point source.
           // Heatmap layers also work with a vector tile source.
           (this.mapa as any).addSource('earthquakes',
               {
                   'type': 'geojson',
-                  'data':
-                  {
-                      'type': 'FeatureCollection',
-                      'features':
-                          [
-                              {
-                                  'type': 'Feature',
-                                  'geometry':
-                                  {
-                                      'type': 'Polygon',
-                                      'coordinates': this._hm.puntos
+                  'data': this._hm.geoJson
+                  // homologar GeoJsonpara pasar solo las coordenadas
+                  // {
+                  //     'type': 'FeatureCollection',
+                  //     'features':
+                  //         [
+                  //             {
+                  //                 'type': 'Feature',
+                  //                 'geometry':
+                  //                 {
+                  //                     'type': 'Polygon',
+                  //                     'coordinates': this._hm.puntos
 
-                                  }
-                              }
-                          ]
-                  }
+                  //                 }
+                  //             }
+                  //         ]
+                  // }
 
               });
 
@@ -171,12 +178,11 @@ export class MapaHeatComponent implements OnInit {
         
         // interactividad con los circulos
         (this.mapa as any).on('click', 'earthquakes-point', (e:any)=> {
-            console.log(e);
-            
+            // console.log(e);            
           new Mapboxgl.Popup()
           
             .setLngLat(e.lngLat)
-            .setHTML('<b>DBH:</b> ' + e.features[0].properties.dbh)
+            .setHTML('<b>ID: </b> ' + e.features[0].properties.id + ' ' + e.features[0].properties.name )
             .addTo((this.mapa as any));
         });
 
