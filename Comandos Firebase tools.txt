@@ -1,0 +1,39 @@
+ejecutar consola como administrador
+
+>> instalar firebase tools
+npm install -g firebase-tools
+
+
+
+>> logear con la cuenta de firebase
+firebase login
+
+>> iniciar proyecto
+firebase init
+
+>> compilar de ts a js
+cd functions
+npm run build
+
+>> poner tsc en modo de observacion
+tsc --watch
+
+>> si no funciona tsc --watch instalarlo
+npm install -g typescript
+
+
+>> desplegar proyeco en servidor local
+firebase serve
+
+
+>> desplegar proyecto a firebase cloud
+firebase deploy
+
+
+>> instalar servidor express
+cd functions
+npm install express cors
+
+>> instalar los tipados de express y cors
+npm install @types/express --save-dev
+npm install @types/cors --save-dev
