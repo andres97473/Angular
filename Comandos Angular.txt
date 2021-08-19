@@ -42,5 +42,14 @@ npm uninstall sweetalert2
 
 
 
->> Instalar libreria de firebase angular AngularFire2
+>> Instalar libreria de firebase angular AngularFire
 npm install firebase @angular/fire --save
+
+>> despues se debe importar
+import { AngularFireModule } from '@angular/fire';
+import { environment } from '../environments/environment';
+
+	AngularFireModule.initializeApp(environment.firebaseConfig)
+
+>> para importar el store se lo hace en el componente en que se lo va a utilizar por lo general en el servicio
+import { AngularFirestore } from '@angular/fire/firestore'

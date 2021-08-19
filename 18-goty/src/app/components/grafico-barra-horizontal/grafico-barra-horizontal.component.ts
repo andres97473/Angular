@@ -1,6 +1,7 @@
 import { Component, OnDestroy } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { AngularFirestore } from '@angular/fire/firestore'
 
 
 @Component({
@@ -9,6 +10,8 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
   styleUrls: ['./grafico-barra-horizontal.component.css']
 })
 export class GraficoBarraHorizontalComponent implements OnDestroy {
+
+  goty:any=[];
 
   results :any[] = [
     {
@@ -42,22 +45,22 @@ export class GraficoBarraHorizontalComponent implements OnDestroy {
 
   colorScheme = "nightLights";
 
-  intervalo:any;
+  //intervalo:any;
 
-  constructor() {
+  constructor( private fireStore: AngularFirestore ) {
 
-    this.intervalo = setInterval( () => {
-      console.log('tick');
+    // this.intervalo = setInterval( () => {
+    //   console.log('tick');
 
-      const newResults = [...this.results];
+    //   const newResults = [...this.results];
 
-      for( let i in newResults ){
-        newResults[i].value = Math.round( Math.random() * 500 )
-      }
+    //   for( let i in newResults ){
+    //     newResults[i].value = Math.round( Math.random() * 500 )
+    //   }
 
-      this.results = [...newResults];
+    //   this.results = [...newResults];
       
-    }, 1500 );
+    // }, 1500 );
 
   }
 
@@ -66,7 +69,8 @@ export class GraficoBarraHorizontalComponent implements OnDestroy {
   }
 
   ngOnDestroy(){
-    clearInterval( this.intervalo );
+    //clearInterval( this.intervalo );
   }
+
 
 }

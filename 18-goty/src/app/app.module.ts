@@ -12,6 +12,10 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 import { HttpClientModule } from '@angular/common/http';
 
+import { AngularFireModule } from '@angular/fire';
+import { environment } from '../environments/environment';
+
+
 
 
 
@@ -29,7 +33,8 @@ import { HttpClientModule } from '@angular/common/http';
     ComponentsModule,
     BrowserAnimationsModule,
     NgxChartsModule,
-    HttpClientModule
+    HttpClientModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig)
   ],
   providers: [],
   bootstrap: [AppComponent]
