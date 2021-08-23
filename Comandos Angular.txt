@@ -47,9 +47,11 @@ npm install firebase @angular/fire --save
 
 >> despues se debe importar
 import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
 
-	AngularFireModule.initializeApp(environment.firebaseConfig)
+	AngularFireModule.initializeApp(environment.firebaseConfig),
+	AngularFirestoreModule
 
->> para importar el store se lo hace en el componente en que se lo va a utilizar por lo general en el servicio
+>> para utilizar el store se lo hace en el componente en que se lo va a utilizar por lo general en el servicio
 import { AngularFirestore } from '@angular/fire/firestore'
