@@ -9,10 +9,13 @@ class GamesController {
        res.json(games);
    } 
 
-   public getOne (req: Request, res: Response) {
-    res.json({
-        text:'Listando juego con id: ' + req.params.id 
-    });
+   public async getOne (req: Request, res: Response): Promise<any> {
+       const { id } = req.params;
+       const games = await pool.query('SELECT * FROM games WHERE id = ?', [id]);
+       if( games.length > 0){
+           return res.json(games[0]);
+       }       
+       res.status(404).json({message:'El juego no existe'});         
    }
 
    public async create (req: Request, res: Response): Promise<void> {
@@ -25,16 +28,16 @@ class GamesController {
        });
    }
 
-   public update (req: Request, res: Response) {
-    res.json({
-        text:'Actualizando juego con id: ' + req.params.id 
-    });
+   public async update (req: Request, res: Response): Promise<void> {
+       const { id } = req.params;
+       await pool.query('UPDATE games SET ? WHERE id = ?', [req.body, id]);  
+       res.json({message:'El juego fue actualizado'});
    }
 
-   public delete (req: Request, res: Response) {
-    res.json({
-        text:'Eliminando juego con id: ' + req.params.id 
-    });
+   public async delete (req: Request, res: Response): Promise<void> {
+       const { id } = req.params;
+       await pool.query('DELETE FROM games WHERE id = ?', [id]);
+       res.json({message:'juego borrado'});
    }
 
 
