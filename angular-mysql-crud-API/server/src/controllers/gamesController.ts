@@ -30,8 +30,11 @@ class GamesController {
 
    public async update (req: Request, res: Response): Promise<void> {
        const { id } = req.params;
-       await pool.query('UPDATE games SET ? WHERE id = ?', [req.body, id]);  
+       await pool.query('UPDATE games SET ? WHERE id = ?', [req.body, id]);
+       await pool.query('UPDATE games SET updated_at = NOW() WHERE id = ?', [ id ]);  
        res.json({message:'El juego fue actualizado'});
+       //console.log(req.body);
+       
    }
 
    public async delete (req: Request, res: Response): Promise<void> {

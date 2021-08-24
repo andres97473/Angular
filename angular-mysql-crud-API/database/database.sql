@@ -11,3 +11,7 @@ CREATE TABLE games(
 );
 
 DESCRIBE games;
+
+
+-- Agregar campo a la tabla
+ALTER TABLE games ADD updated_at DATETIME;
