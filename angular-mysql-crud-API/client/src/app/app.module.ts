@@ -11,6 +11,8 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { GamesService } from './services/games.service';
 
+import { FormsModule } from "@angular/forms";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +23,8 @@ import { GamesService } from './services/games.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [
     GamesService
