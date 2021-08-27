@@ -7,4 +7,5 @@ export interface Game {
     created_at?: Date;
     updated_at?: Date;
     id_genero?: number;
+    genero?:string;
 } 

@@ -21,12 +21,18 @@ export class GameFormComponent implements OnInit {
     description:'',
     image:'',
     created_at: new Date(),
-    id_genero:6
+    updated_at: new Date(),
+    id_genero:6,
+    genero:''
   };
 
   generos:Genero[]=[]
 
   edit=false;
+
+  generoGame:Genero={};
+
+  
 
   constructor( private gamesService: GamesService,
                 private router: Router,
@@ -43,16 +49,17 @@ export class GameFormComponent implements OnInit {
         resp => {
           //console.log(resp)  
           this.game = resp;  
-          this.edit = true;      
+          this.edit = true;    
+          this.getGeneroGame();  
         },
         err => console.error(err)        
       );
     }
 
     this.getGeneros();
+    this.getGeneroGame();
 
-
-    
+        
   }
 
 
@@ -68,12 +75,27 @@ export class GameFormComponent implements OnInit {
       );
   }
 
+  getGeneroGame( ){
+   
+    this.generosService.getOneGenero( (this.game.id_genero as any) ).subscribe(
+      (resp:Genero)=>{
+        //console.log(resp);
+
+        this.game.genero=resp.title;        
+        
+        //console.log(this.game.genero);
+                
+      });
+  }
+
   saveNewGame(){
     // se puede eliminar datos para que se acople a lo que recibe el API
     delete this.game.id;
-    delete this.game.created_at;    
+    delete this.game.created_at;  
+    delete this.game.updated_at; 
+    delete this.game.genero; 
 
-    console.log(this.game);
+    //console.log(this.game);
 
     this.gamesService.saveGame( this.game ).subscribe(
       res => {
@@ -89,10 +111,14 @@ export class GameFormComponent implements OnInit {
   updateGame(){
     //console.log(this.game);
     delete this.game.created_at;
+    delete this.game.genero;
+    delete this.game.updated_at;
 
     this.gamesService.updateGame((this.game.id as any), this.game).subscribe(
       resp => {
         console.log(resp)      
+        this.getGeneroGame();
+        this.router.navigate(['/games']);
       },
       err => console.error(err)      
     );

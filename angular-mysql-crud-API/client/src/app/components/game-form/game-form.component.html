@@ -1,4 +1,11 @@
 <div class="col-md-4 offset-md-2">
+    <div class="col">
+        <div class="row">
+            <button class="btn btn-primary btn-lg btn-block" type="button" routerLink="/games">
+                REGRESAR SIN GUARDAR
+            </button>
+        </div>
+    </div>
     <div class="card">
         <div class="card-body">
             <form>
@@ -11,8 +18,8 @@
                 </div>
 
                 <div>
-                    <select class="form-control mb-4" name="id_genero" [(ngModel)]="game.id_genero">
-                        <option *ngFor="let genero of generos" [value]="genero.id_genero">{{ genero.title }}</option>
+                    <select class="form-control mb-4" name="id_genero" [(ngModel)]="game.id_genero" (click)="getGeneroGame()">
+                        <option *ngFor="let genero of generos" [value]="genero.id_genero" >{{ genero.title }}</option>
                     </select>
                 </div>
 
@@ -32,9 +39,10 @@
 <div class="col-md-4">
     <div class="card card-body text-center">
         <img [src]="game.image == '' ? '/assets/img/noimage.png' : game.image" class="card-img-top">
-        <h3>{{ game.id }} - {{ game.title == '' ? 'Juego Titulo' : game.title }}</h3>
+        <h3><strong *ngIf="game.id!=0">ID: {{ game.id }} - </strong>{{ game.title == '' ? 'Juego Titulo' : game.title }}</h3>
         <p>{{ game.description == '' ? 'Juego Descripcion' : game.description }}</p>
-        <p>{{ game.created_at | date:'yyyy-MM-dd' }}</p>
-        <p>Id del genero: {{ game.id_genero }}</p>
+        <p>Genero: {{ game.genero }} </p>
+        <p>Creado: {{ game.created_at | date:'yyyy-MM-dd h:mm a' }}</p>
+        <p *ngIf="game.updated_at && edit">Actualizado: {{ game.updated_at | date:'yyyy-MM-dd h:mm a' }}</p>
     </div>
 </div>
