@@ -1,0 +1,20 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">Titulo</th>
+            <th scope="col">Descripcion</th>
+            <th scope="col">Actualizado</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let genero of generos">
+
+            <th scope="row">{{ genero.id_genero }}</th>
+            <td>{{ genero.title }}</td>
+            <td>{{ genero.description }}</td>
+            <td>{{ genero.updated_at }}</td>
+        </tr>
+
+    </tbody>
+</table>

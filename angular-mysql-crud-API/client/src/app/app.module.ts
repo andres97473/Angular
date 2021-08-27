@@ -12,13 +12,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { GamesService } from './services/games.service';
 
 import { FormsModule } from "@angular/forms";
+import { GeneroListComponent } from './components/generos/genero-list/genero-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavigationComponent,
     GameFormComponent,
-    GameListComponent
+    GameListComponent,
+    GeneroListComponent
   ],
   imports: [
     BrowserModule,

@@ -4,7 +4,11 @@ import { Request, Response } from 'express';
 class IndexController {
 
    public index ( req: Request, res: Response ) {       
-       res.send('The API is /api/games')
+       res.json({
+           games:'The API games is /api/games',
+           generos:'The API generos is /api/generos'
+        })
+       
    } 
 }
 

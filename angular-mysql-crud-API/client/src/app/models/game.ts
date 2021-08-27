@@ -6,4 +6,5 @@ export interface Game {
     image?: string;
     created_at?: Date;
     updated_at?: Date;
+    id_genero?: number;
 } 

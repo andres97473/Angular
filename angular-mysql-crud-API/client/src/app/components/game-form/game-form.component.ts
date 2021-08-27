@@ -2,6 +2,8 @@ import { Component, HostBinding, OnInit } from '@angular/core';
 import { Game } from '../../models/game';
 import { GamesService } from '../../services/games.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { GenerosService } from '../../services/generos.service';
+import { Genero } from '../../models/genero';
 
 
 @Component({
@@ -18,14 +20,18 @@ export class GameFormComponent implements OnInit {
     title:'',
     description:'',
     image:'',
-    created_at: new Date()
+    created_at: new Date(),
+    id_genero:6
   };
+
+  generos:Genero[]=[]
 
   edit=false;
 
   constructor( private gamesService: GamesService,
                 private router: Router,
-                private actived: ActivatedRoute ) { 
+                private actived: ActivatedRoute,
+                private generosService: GenerosService ) { 
 
   }
 
@@ -42,7 +48,24 @@ export class GameFormComponent implements OnInit {
         err => console.error(err)        
       );
     }
+
+    this.getGeneros();
+
+
     
+  }
+
+
+  getGeneros(){
+    this.generosService.getGeneros().subscribe( 
+      //resp => console.log(resp),
+      (res:any) => {
+        this.generos = res;   
+        //console.log(this.generos);
+             
+      },
+      err => console.error(err)
+      );
   }
 
   saveNewGame(){
@@ -50,7 +73,7 @@ export class GameFormComponent implements OnInit {
     delete this.game.id;
     delete this.game.created_at;    
 
-    //console.log(this.game);
+    console.log(this.game);
 
     this.gamesService.saveGame( this.game ).subscribe(
       res => {

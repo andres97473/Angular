@@ -9,6 +9,7 @@ const cors_1 = __importDefault(require("cors"));
 //Routes
 const indexRoutes_1 = __importDefault(require("./routes/indexRoutes"));
 const gamesRoutes_1 = __importDefault(require("./routes/gamesRoutes"));
+const generosRoutes_1 = __importDefault(require("./routes/generosRoutes"));
 class Server {
     constructor() {
         this.app = express_1.default();
@@ -30,6 +31,7 @@ class Server {
     routes() {
         this.app.use(indexRoutes_1.default);
         this.app.use('/api/games', gamesRoutes_1.default);
+        this.app.use('/api/generos', generosRoutes_1.default);
     }
     start() {
         this.app.listen(this.app.get('port'), () => {
