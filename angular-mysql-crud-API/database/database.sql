@@ -24,7 +24,9 @@ USE ng_games_db;
 
 CREATE TABLE generos(
     id_genero INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    title VARCHAR(180)
+    title VARCHAR(180),
+    description VARCHAR(255),
+    updated_at DATETIME
 );
 
 DESCRIBE generos;
@@ -61,6 +63,14 @@ VALUES
     (        
         'Disparos',
         'Juegos en los que es esencial el habiliadad con el uso de armas'
+    ),
+    (        
+        'Primera persona',
+        'Juegos donde se utiliza la camara de primera persona'
+    ),
+    (        
+        'Otro',
+        'Juego aun sin clasificar o de otro tipo'
     );
 
 SELECT * FROM generos;
@@ -78,7 +88,7 @@ alter table games drop genero_id;
 
 
 
--- Relacionar el genero_id de games con la tabla generos
+-- Relacionar el id_genero de games con la tabla generos
 ALTER TABLE games ADD FOREIGN KEY (id_genero) REFERENCES generos (id_genero);
 DESCRIBE games;
 
