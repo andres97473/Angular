@@ -1,22 +1,24 @@
 import { Router } from "express";
 import UserController from '../controller/UserController';
+import { checkJwt } from '../middleware/jwt';
+import { checkRole } from '../middleware/role';
 
 
 const router = Router();
 
 // Get all users
-router.get('/', UserController.getAll);
+router.get('/', [ checkJwt, checkRole(['admin']) ], UserController.getAll);
 
 // Get one user
-router.get('/:id', UserController.getById);
+router.get('/:id', [ checkJwt, checkRole(['admin']) ], UserController.getById);
 
 // Create a new user
-router.post('/', UserController.newUser);
+router.post('/', [ checkJwt, checkRole(['admin']) ], UserController.newUser);
 
 // Edit user
-router.patch('/:id', UserController.editUser);
+router.patch('/:id', [ checkJwt, checkRole(['admin']) ], UserController.editUser);
 
 // Delete user
-router.delete('/:id', UserController.deleteUser);
+router.delete('/:id', [ checkJwt, checkRole(['admin']) ], UserController.deleteUser);
 
 export default router;

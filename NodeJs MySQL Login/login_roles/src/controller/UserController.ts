@@ -42,13 +42,16 @@ export class UserController {
         user.role = role;
 
         // validate
-        const errors = validate(user);
+        const validationOpt = { validationError:{ target: false, value:false }};
+        const errors = await validate(user, validationOpt );
+        
         if( (await errors).length > 0 ){
             return res.status(400).json(errors);
         }
 
         const userRepository = getRepository(User);
         try {
+           user.hashPassword();                        
             await userRepository.save(user);          
         }
         catch (e) {
@@ -75,15 +78,16 @@ export class UserController {
         }
         catch(e){
             return res.status(404).json({message:'User not found'})
-        }        
-
-        const errors = await validate(user);
+        }
+        
+        const validationOpt = { validationError:{ target: false, value:false }};
+        const errors = await validate(user, validationOpt );
         if( errors.length > 0 ){
             return res.status(400).json(errors);
         }
 
         // try to save
-        try {
+        try {           
             await userRepository.save(user);            
         }
         catch(e){

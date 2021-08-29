@@ -2,6 +2,8 @@ import {Entity, PrimaryGeneratedColumn, Column, Unique, CreateDateColumn, Update
 
 import { MinLength, IsNotEmpty } from "class-validator";
 
+import * as bcrypt from "bcryptjs";
+
 // TODO IsEmail
 
 @Entity()
@@ -29,6 +31,19 @@ export class User {
 
     @Column()
     @UpdateDateColumn()
-    update_at: Date;    
+    update_at: Date; 
+    
+    // Metodos
+    
+    // Encriptar password
+    hashPassword():void{        
+        this.password = bcrypt.hashSync(this.password, 10 );
+    }
+
+    checkPassword( password: string ):boolean{
+        return bcrypt.compareSync(password,this.password)
+    }
+
+
 
 }
