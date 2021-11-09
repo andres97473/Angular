@@ -28,11 +28,11 @@ export class LoginComponent implements OnInit {
   ingresar() {
     const usuario = this.form.value.usuario;
     const password = this.form.value.password;
-    console.log(usuario);
-    console.log(password);
+    //console.log(usuario);
+    //console.log(password);
 
     if (usuario == 'andres' && password == '123456') {
-      console.log('Login con exito');
+      //console.log('Login con exito');
       this.fakeLoading();
     } else {
       //console.log('Error de autenticacion');
