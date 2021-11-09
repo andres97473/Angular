@@ -8,6 +8,7 @@ import { InicioComponent } from './inicio/inicio.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { ReportesComponent } from './reportes/reportes.component';
+import { CrearUsuariosComponent } from './usuarios/crear-usuarios/crear-usuarios.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { ReportesComponent } from './reportes/reportes.component';
     NavbarComponent,
     UsuariosComponent,
     ReportesComponent,
+    CrearUsuariosComponent,
   ],
   imports: [CommonModule, DashboardRoutingModule, SharedModule],
 })

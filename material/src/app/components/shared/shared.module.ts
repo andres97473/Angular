@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
 // Angular material
 import { MatSliderModule } from '@angular/material/slider';
@@ -15,10 +16,14 @@ import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { MatCardModule } from '@angular/material/card';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [],
   imports: [
+    ReactiveFormsModule,
     CommonModule,
     MatSliderModule,
     MatFormFieldModule,
@@ -33,8 +38,12 @@ import { MatSortModule } from '@angular/material/sort';
     MatTooltipModule,
     MatPaginatorModule,
     MatSortModule,
+    MatCardModule,
+    MatGridListModule,
+    MatSelectModule,
   ],
   exports: [
+    ReactiveFormsModule,
     MatSliderModule,
     MatFormFieldModule,
     MatInputModule,
@@ -48,6 +57,9 @@ import { MatSortModule } from '@angular/material/sort';
     MatTooltipModule,
     MatPaginatorModule,
     MatSortModule,
+    MatCardModule,
+    MatGridListModule,
+    MatSelectModule,
   ],
 })
 export class SharedModule {}
