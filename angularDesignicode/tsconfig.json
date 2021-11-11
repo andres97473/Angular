@@ -20,13 +20,13 @@
     "module": "es2020",
     "lib": ["es2020", "dom"],
     "paths": {
-      "@core/*": ["app/core/*"],
-      "@share/*": ["app/shared/*"],
-      "@components/*": ["app/shared/components*"],
-      "@env/*": ["enviroment/*"],
-      "@modules/*": ["app/modules/*"],
-      "@data/*": ["app/data/*"],
-      "@layout/*": ["app/layout/*"]
+      "@core/*": ["src/app/core/*"],
+      "@share/*": ["src/app/shared/*"],
+      "@components/*": ["src/app/shared/components*"],
+      "@env/*": ["src/enviroments/*"],
+      "@modules/*": ["src/app/modules/*"],
+      "@data/*": ["src/app/data/*"],
+      "@layout/*": ["src/app/layout/*"]
     }
   },
   "angularCompilerOptions": {

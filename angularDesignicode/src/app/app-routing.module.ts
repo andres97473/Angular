@@ -1,8 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SkeletonComponent } from './layout/skeleton/skeleton.component';
+import { UserModule } from './modules/user/user.module';
 
-const routes: Routes = [{ path: '', component: SkeletonComponent }];
+const routes: Routes = [
+  {
+    path: '',
+    component: SkeletonComponent,
+    children: [
+      {
+        path: '',
+        loadChildren: () =>
+          import('@modules/user/user.module').then((m) => m.UserModule),
+      },
+    ],
+  },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, { useHash: true })],
