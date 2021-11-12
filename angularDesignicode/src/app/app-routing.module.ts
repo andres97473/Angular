@@ -6,14 +6,29 @@ import { UserModule } from './modules/user/user.module';
 const routes: Routes = [
   {
     path: '',
+    redirectTo: '/panel/user',
+    pathMatch: 'full',
+  },
+  {
+    path: 'panel',
     component: SkeletonComponent,
     children: [
       {
-        path: '',
+        path: 'user',
         loadChildren: () =>
           import('@modules/user/user.module').then((m) => m.UserModule),
       },
+      {
+        path: '**',
+        redirectTo: '/panel/user',
+        pathMatch: 'full',
+      },
     ],
+  },
+  {
+    path: '**',
+    redirectTo: '/panel/user',
+    pathMatch: 'full',
   },
 ];
 

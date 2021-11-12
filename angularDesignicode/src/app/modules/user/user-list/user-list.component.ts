@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ICardUser } from '../../../shared/components/cards/card-user/card-user.metadata';
+import { USERS_DATA } from '../../../data/constants/user.const';
 
 @Component({
   selector: 'app-user-list',
@@ -7,12 +8,7 @@ import { ICardUser } from '../../../shared/components/cards/card-user/card-user.
   styleUrls: ['./user-list.component.scss'],
 })
 export class UserListComponent implements OnInit {
-  public users: ICardUser = {
-    name: 'Ivan Drago',
-    age: 28,
-    description: 'Desarrollador',
-    avatar: 'https://cdn.iconscout.com/icon/free/png-256/avatar-370-456322.png',
-  };
+  public users: ICardUser[] = USERS_DATA;
   constructor() {}
 
   ngOnInit(): void {}

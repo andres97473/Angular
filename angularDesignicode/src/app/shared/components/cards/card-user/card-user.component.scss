@@ -1,5 +1,5 @@
 .dsc-card {
-  height: 170px;
+  height: 180px;
   max-width: 350px;
   border: 1px solid rgba(0, 0, 0, 0.25);
   border-radius: 10px;
@@ -9,6 +9,7 @@
   align-items: center;
   border-left: 4px solid rgb(88, 80, 196);
   transition: 0.7s all ease-in-out;
+  margin: 1rem;
   &__img {
     height: 100px;
     width: 100px;
@@ -26,6 +27,7 @@
     padding: 0.5rem;
     p {
       opacity: 0.5;
+      margin: 0;
     }
   }
   &:hover {
