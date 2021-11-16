@@ -1,7 +1,16 @@
 <div class="row">
   <div class="col-12">
-    <h1>Detalle de</h1>
+    <h1 class="text-success my-5">DETALLE DE USUARIO</h1>
+  </div>
+  <div class="col-12 col-md-6 col-xl-3">
+    <img class="dsc-user-img" [src]="currentUser?.avatar" alt="" />
+  </div>
+  <div class="col-12 col-md-6 col-xl-9">
+    <h2 class="border-bottom pb-3">Detalle de {{ currentUser?.name }}</h2>
+    <h3>Edad: {{ currentUser?.age }}</h3>
+    <h3 class="border-bottom pb-3">
+      Puesto: {{ currentUser?.work ? currentUser?.work : "Sin Asignar" }}
+    </h3>
+    <p>{{ currentUser?.description }}</p>
   </div>
 </div>
-<h1>DETALLES DE USUARIO</h1>
-<h2>Este es el ID: {{ id }}</h2>
