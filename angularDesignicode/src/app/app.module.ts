@@ -9,6 +9,7 @@ import { SharedModule } from './shared/shared.module';
 import { SkeletonComponent } from './layout/skeleton/skeleton.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { NavigationComponent } from './layout/navigation/navigation.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,14 @@ import { NavigationComponent } from './layout/navigation/navigation.component';
     FooterComponent,
     NavigationComponent,
   ],
-  imports: [CoreModule, SharedModule, BrowserModule, AppRoutingModule],
+  imports: [
+    CoreModule,
+    SharedModule,
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+  ],
+  exports: [HttpClientModule],
   providers: [
     {
       provide: LocationStrategy,
