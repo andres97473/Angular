@@ -19,13 +19,13 @@
       </div>
     </ng-container>
   </div>
-  <div
-    class="dsc-carousel__steps dsc-carousel__steps-step{{
-      currentPosition === item.id ? 'active' : ''
-    }}"
-    *ngFor="let item of items"
-    (click)="setCurrentPosition(item.id)"
-  >
-    <div class="dsc-carousel__steps-step"></div>
+  <div class="dsc-carousel__steps">
+    <div
+      class="dsc-carousel__steps-step dsc-carousel__steps-step-{{
+        currentPosition === item.id ? 'active' : ''
+      }}"
+      *ngFor="let item of items"
+      (click)="setCurrentPosition(item.id)"
+    ></div>
   </div>
 </div>
