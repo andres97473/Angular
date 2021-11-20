@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import * as fromComponents from './components';
-import { CardUserComponent } from './components/cards/card-user/card-user.component';
+
 import { RouterModule } from '@angular/router';
 
 @NgModule({
@@ -14,7 +14,7 @@ import { RouterModule } from '@angular/router';
     HttpClientModule,
     RouterModule,
   ],
-  declarations: [...fromComponents.components, CardUserComponent],
+  declarations: [...fromComponents.components],
   exports: [
     CommonModule,
     FormsModule,
