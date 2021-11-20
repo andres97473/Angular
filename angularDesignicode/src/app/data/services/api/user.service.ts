@@ -24,6 +24,7 @@ export class UserService {
       msg: 'Usuarios cargados Correctamente!',
       data: [],
     };
+
     return this._http.get<ICardUser[]>(this.url + '/users').pipe(
       map((r: any) => {
         response.data = r;
@@ -33,7 +34,9 @@ export class UserService {
     );
   }
 
-  getUserById(id: number): Observable<{
+  getUserById(
+    id: number
+  ): Observable<{
     error: boolean;
     msg: string;
     data: ICardUser[];

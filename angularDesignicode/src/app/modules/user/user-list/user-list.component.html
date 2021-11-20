@@ -1,18 +1,70 @@
-<!-- <div class="row">
+<div class="row">
   <div class="col-12">
     <app-title-h1 text="LISTA DE USUARIOS"></app-title-h1>
   </div>
-  <app-card-user
-    [data]="user"
-    *ngFor="let user of users"
-    class="col-12 col-md-6 col-xl-3"
-  ></app-card-user>
-</div> -->
 
-<div class="container-fluid px-0">
+  <!---------------------------------------------------------
+   Lista de usuarios 
+  --------------------------------------------------------->
+
+  <!-- <ng-container *ngIf="cargado; else elseUsersLoader">
+    <app-card-user
+      [data]="user"
+      *ngFor="let user of users"
+      class="col-12 col-md-6 col-xl-3"
+    ></app-card-user>
+  </ng-container> -->
+
+  <!---------------------------------------------------------
+  fin Lista de usuarios 
+  --------------------------------------------------------->
+
+  <ng-template #elseUsersLoader>
+    <app-card-loader
+      class="col-12 col-md-6 col-xl-3"
+      [bars]="7"
+      *ngFor="let item of users"
+    ></app-card-loader>
+  </ng-template>
+</div>
+
+<!---------------------------------------------------------
+   carosuel 
+  --------------------------------------------------------->
+
+<!-- <div class="container-fluid px-0">
   <div class="row bg-dark h-100">
     <div class="col-12 px-0">
       <app-carousel [items]="carouselData"></app-carousel>
     </div>
+  </div>
+</div> -->
+
+<!---------------------------------------------------------
+   fin del carosuel 
+  --------------------------------------------------------->
+
+<!---------------------------------------------------------
+   ng for 
+  --------------------------------------------------------->
+
+<!-- <div class="row">
+  <div class="col-12">
+    <h1>Lista de tareas</h1>
+  </div>
+  <div class="col-12" *ngFor="let task of tasks; index as i">
+    <h2>Tarea #{{ i + 1 }}-{{ task.title }}</h2>
+  </div>
+</div> -->
+
+<div class="row">
+  <div class="col-12">
+    <h1>Opciones dias</h1>
+  </div>
+  <div
+    class="col-12"
+    *ngFor="let opcion of opciones; first as isFirst; last as isLast"
+  >
+    <h2>{{ opcion }} {{ isFirst || isLast ? "dia" : "dias" }}</h2>
   </div>
 </div>
