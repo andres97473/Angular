@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import * as fromComponents from './components';
 
 import { RouterModule } from '@angular/router';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   imports: [
@@ -13,6 +14,7 @@ import { RouterModule } from '@angular/router';
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule,
+    FontAwesomeModule,
   ],
   declarations: [...fromComponents.components],
   exports: [
@@ -21,6 +23,7 @@ import { RouterModule } from '@angular/router';
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule,
+    FontAwesomeModule,
     ...fromComponents.components,
   ],
 })

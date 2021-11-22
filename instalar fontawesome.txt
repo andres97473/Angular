@@ -1,0 +1,10 @@
+npm install @fortawesome/fontawesome-svg-core
+
+npm install @fortawesome/free-solid-svg-icons
+
+>> instalar npm install @fortawesome/angular-fontawesome@'version'
+npm install @fortawesome/angular-fontawesome@0.9
+
+>> adicional para redes sociales
+npm install --save @fortawesome/free-brands-svg-icons
+npm install --save @fortawesome/free-regular-svg-icons

@@ -10,6 +10,9 @@ import { SkeletonComponent } from './layout/skeleton/skeleton.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { NavigationComponent } from './layout/navigation/navigation.component';
 import { HttpClientModule } from '@angular/common/http';
+import { HeaderComponent } from './layout/header/header.component';
+import { LeftNavComponent } from './layout/left-nav/left-nav.component';
+import { LeftNavMenuComponent } from './layout/left-nav/left-nav-menu/left-nav-menu.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +20,9 @@ import { HttpClientModule } from '@angular/common/http';
     SkeletonComponent,
     FooterComponent,
     NavigationComponent,
+    HeaderComponent,
+    LeftNavComponent,
+    LeftNavMenuComponent,
   ],
   imports: [
     CoreModule,
