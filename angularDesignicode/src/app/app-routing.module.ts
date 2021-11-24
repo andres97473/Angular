@@ -6,8 +6,13 @@ import { UserModule } from './modules/user/user.module';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/panel/user',
+    redirectTo: '/auth/login',
     pathMatch: 'full',
+  },
+  {
+    path: 'auth',
+    loadChildren: () =>
+      import('@modules/auth/auth.module').then((m) => m.AuthModule),
   },
   {
     path: 'panel',
@@ -18,16 +23,11 @@ const routes: Routes = [
         loadChildren: () =>
           import('@modules/user/user.module').then((m) => m.UserModule),
       },
-      {
-        path: '**',
-        redirectTo: '/panel/user',
-        pathMatch: 'full',
-      },
     ],
   },
   {
     path: '**',
-    redirectTo: '/panel/user',
+    redirectTo: '/auth/login',
     pathMatch: 'full',
   },
 ];
