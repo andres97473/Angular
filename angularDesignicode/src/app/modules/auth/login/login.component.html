@@ -1,25 +1,7 @@
 <div class="login-container" [ngStyle]="backgroundStyle">
   <div class="login-form">
     <img [src]="$imagesRoutes.LOGO" class="login-form-logo" />
-    <div class="login-form-content">
-      <h1>Bienvenido de nuevo</h1>
-      <p>
-        Gracias por volver a tu sitio favorito, por favor llenar el formulario.
-      </p>
-      <div class="login-form-input">
-        <label>Email*:</label>
-        <input type="email" placeholder="Email" />
-      </div>
-      <div class="login-form-input">
-        <label>Contraseña*:</label>
-        <input type="password" placeholder="Contraseña" />
-      </div>
-      <small>Olvide contraseña</small>
-      <div class="login-form-buttons">
-        <button class="login-form-buttons__signup">Registrarse</button>
-        <button class="login-form-buttons__signin">Iniciar sesion</button>
-      </div>
-    </div>
+    <div class="login-form-content" app-login-form></div>
     <div class="login-form-footer">
       <div class="login-form-footer__links">
         <a href="#">Acerca de</a>

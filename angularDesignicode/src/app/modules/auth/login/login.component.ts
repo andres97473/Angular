@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { IMAGES_ROUTES } from '@data/constants/routes/images.routes';
+import { CONST_LOGIN_PAGE } from '../../../data/constants/pages/login/login-validate.const';
 import {
   faFacebookSquare,
   faInstagramSquare,
@@ -11,7 +12,7 @@ import {
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   public $imagesRoutes = IMAGES_ROUTES;
   public backgroundStyle;
   public socialIcons = [faFacebookSquare, faTwitterSquare, faInstagramSquare];
@@ -21,6 +22,4 @@ export class LoginComponent implements OnInit {
       backgroundImage: `url(${this.$imagesRoutes.BACKGROUND_LOGIN})`,
     };
   }
-
-  ngOnInit(): void {}
 }

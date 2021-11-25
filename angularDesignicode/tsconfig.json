@@ -26,6 +26,8 @@
       "@env/*": ["src/enviroments/*"],
       "@modules/*": ["src/app/modules/*"],
       "@data/*": ["src/app/data/*"],
+      "@enum/*": ["src/app/data/enum/*"],
+      "@interfaces/*": ["src/app/data/interfaces*"],
       "@layout/*": ["src/app/layout/*"]
     }
   },
