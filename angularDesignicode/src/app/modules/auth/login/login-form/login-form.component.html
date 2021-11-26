@@ -1,19 +1,72 @@
 <h1>Bienvenido de nuevo</h1>
 <p>Gracias por volver a tu sitio favorito, por favor llenar el formulario.</p>
 <form [formGroup]="loginForm" (ngSubmit)="authenticate()">
+  <!----------------------------Field person name -------------------->
+  <!-- <div formGroupName="person">
+    <div class="login-form-input">
+      <label>Nombre*:</label>
+      <input type="text" placeholder="Nombre" formControlName="name" />
+      <small
+        class="bg-danger text-light mt-1 px-2 py-1 rounded"
+        *ngIf="
+          (fp['name'].dirty || fp['name'].touched) &&
+          fp['name'].errors &&
+          loginSubmitted
+        "
+      >
+        <ng-container [ngSwitch]="fp['name'].value">
+          <ng-container *ngSwitchCase="''">
+            El nombre es requerido!
+          </ng-container>
+          <ng-container *ngSwitchDefault
+            >El nombre debe tener maximo 35 caracteres!</ng-container
+          >
+        </ng-container>
+      </small>
+    </div>
+    <div class="login-form-input">
+      <label>Apellido*:</label>
+      <input type="text" placeholder="Apellido" formControlName="lastname" />
+      <small
+        class="bg-danger text-light mt-1 px-2 py-1 rounded"
+        *ngIf="
+          (fp['lastname'].dirty || fp['lastname'].touched) &&
+          fp['lastname'].errors &&
+          loginSubmitted
+        "
+      >
+        <ng-container [ngSwitch]="fp['lastname'].value">
+          <ng-container *ngSwitchCase="''">
+            El apellido es requerido!
+          </ng-container>
+          <ng-container *ngSwitchDefault
+            >El apellido debe tener maximo 35 caracteres!</ng-container
+          >
+        </ng-container>
+      </small>
+    </div>
+  </div> -->
+  <!----------------------------Field Email -------------------->
   <div class="login-form-input">
     <label>Email*:</label>
     <input type="email" placeholder="Email" formControlName="email" />
     <small
       class="bg-danger text-light mt-1 px-2 py-1 rounded"
-      *ngIf="fm['email'] && fm['email'].errors"
+      *ngIf="
+        (fm['email'].dirty || fm['email'].touched) &&
+        fm['email'].errors &&
+        loginSubmitted
+      "
     >
       <ng-container [ngSwitch]="fm['email'].value">
-        <ng-container ngSwitchCase="''">El email es requerido!</ng-container>
-        <ng-container ngSwitchDefault>El email es invalido!</ng-container>
+        <ng-container *ngSwitchCase="''">
+          El correo es requerido!
+        </ng-container>
+        <ng-container *ngSwitchDefault>El correo es invalido!</ng-container>
       </ng-container>
     </small>
   </div>
+  <!----------------------------Field Password -------------------->
   <div class="login-form-input">
     <label>Contraseña*:</label>
     <input
@@ -21,19 +74,58 @@
       placeholder="Contraseña"
       formControlName="password"
     />
-    <!-- <small
+    <small
       class="bg-danger text-light mt-1 px-2 py-1 rounded"
-      *ngIf="!loginForm.password.isValid() && password.touched"
-      >{{ loginForm.password.error }}</small> -->
+      *ngIf="
+        (fm['password'].dirty || fm['password'].touched) &&
+        fm['password'].errors &&
+        loginSubmitted
+      "
+    >
+      <ng-container [ngSwitch]="fm['password'].value">
+        <ng-container *ngSwitchCase="''">
+          La contraseña es requerida!
+        </ng-container>
+        <ng-container *ngSwitchDefault
+          >La contraseña debe tener entre 8 y 2o caracteres!</ng-container
+        >
+      </ng-container>
+    </small>
   </div>
+  <!---------------------------- Field Interests-------------------->
+  <!-- <div class="login-form-input" formArrayName="interests">
+    <label>Intereses*: </label>
+    <button type="button" (click)="addInterest()">Agregar</button>
+    <br />
+    <ng-container *ngFor="let interest of interests.controls; let i = index">
+      <div class="login-form-input">
+        <div>
+          <input type="text" placeholder="Interes" [formControlName]="i" />
+          <button type="button" (click)="deleteInterest(i)">
+            <i class="fa fa-trash" aria-hidden="true"></i>
+          </button>
+        </div>
+        <small
+          class="bg-danger text-light mt-1 px-2 py-1 rounded"
+          *ngIf="interest.errors && loginSubmitted"
+        >
+          <ng-container [ngSwitch]="interest.value">
+            <ng-container *ngSwitchCase="''">
+              El interes es requerido!
+            </ng-container>
+            <ng-container *ngSwitchDefault
+              >El interes debe tener al menos 5 caracteres!</ng-container
+            >
+          </ng-container>
+        </small>
+      </div>
+    </ng-container>
+  </div> -->
+  <!---------------------------- buttons-------------------->
   <small class="small">Olvide contraseña</small>
   <div class="login-form-buttons">
     <button class="login-form-buttons__signup">Registrarse</button>
-    <button
-      type="submit"
-      class="login-form-buttons__signin"
-      [disabled]="!loginForm.valid"
-    >
+    <button type="submit" class="login-form-buttons__signin">
       Iniciar sesion
     </button>
   </div>

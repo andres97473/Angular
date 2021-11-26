@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CONST_LOGIN_PAGE } from '@data/constants';
 
 @Component({
@@ -11,14 +11,16 @@ export class LoginFormComponent {
   // constante de data
   public data = CONST_LOGIN_PAGE;
   // public loginForm;
-  public loginForm: FormGroup;
+  public loginForm: any;
+
+  public loginSubmitted = false;
 
   constructor(private formBuilder: FormBuilder) {
     // this.loginForm = this.data.FORM;
 
     this.loginForm = this.formBuilder.group({
       email: [
-        '',
+        'andres@gmail.com',
         [
           Validators.required,
           Validators.pattern(
@@ -27,13 +29,23 @@ export class LoginFormComponent {
         ],
       ],
       password: [
-        '',
+        'Ojeda2021',
         [
           Validators.required,
-          Validators.maxLength(20),
           Validators.minLength(8),
+          Validators.maxLength(20),
         ],
       ],
+      // person: this.formBuilder.group({
+      //   name: ['Andres', [Validators.required, Validators.maxLength(35)]],
+      //   lastname: ['Ojeda', [Validators.required, Validators.maxLength(35)]],
+      // }),
+      // interests: this.formBuilder.array([
+      //   this.formBuilder.control('', [
+      //     Validators.required,
+      //     Validators.minLength(5),
+      //   ]),
+      // ]),
     });
   }
 
@@ -46,7 +58,34 @@ export class LoginFormComponent {
     return this.loginForm.controls;
   }
 
+  // get fp() {
+  //   return this.loginForm.controls['person'].controls;
+  // }
+
+  // get interests() {
+  //   return this.loginForm.get('interests') as FormArray;
+  // }
+
+  // addInterest() {
+  //   this.interests.push(
+  //     this.formBuilder.control('', [
+  //       Validators.required,
+  //       Validators.minLength(5),
+  //     ])
+  //   );
+  // }
+
+  // deleteInterest(i: number) {
+  //   this.interests.removeAt(i);
+  // }
+
   authenticate() {
-    console.log('Autenticar');
+    this.loginSubmitted = true;
+    if (!this.loginForm.valid) {
+      return;
+    }
+    //console.log(this.loginForm.value.email);
+    //console.log(this.loginForm.get('password')?.value);
+    console.log(this.loginForm.value);
   }
 }
