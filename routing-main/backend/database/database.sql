@@ -1,3 +1,5 @@
+CREATE DATABASE registro;
+USE `registro`;
 CREATE TABLE IF NOT EXISTS `registration` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Clave primaria',
   `number` int(20) DEFAULT NULL,
