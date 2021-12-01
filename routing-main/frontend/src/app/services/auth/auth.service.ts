@@ -16,12 +16,22 @@ export class AuthService {
 
   constructor(private router: Router, private http: HttpClient) {}
 
+  // seters
   setToken(token: string): void {
     localStorage.setItem('token', token);
   }
 
+  setRol(rol: string): void {
+    localStorage.setItem('rol', rol);
+  }
+
+  // geters
+
   getToken(): string | null {
     return localStorage.getItem('token');
+  }
+  getRol(): string | null {
+    return localStorage.getItem('rol');
   }
 
   isLoggedIn() {
@@ -30,6 +40,7 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('rol');
     this.router.navigate(['login']);
   }
 

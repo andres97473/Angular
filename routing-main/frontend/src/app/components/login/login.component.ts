@@ -33,6 +33,7 @@ export class LoginComponent implements OnInit {
             Swal.fire(result.data);
           } else {
             this._auth.setToken(result.token);
+            this._auth.setRol(result.rol);
             this.router.navigate(['/admin']);
             this._auth.loginData = {
               message: result.message,
