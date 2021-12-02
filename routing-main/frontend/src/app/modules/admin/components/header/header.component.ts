@@ -8,10 +8,13 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  @Input() email?: string;
+  emailLogin!: string | null;
   constructor(private auth: AuthService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.emailLogin = this.auth.getEmail();
+    // console.log(this.emailLogin);
+  }
   logout(): void {
     this.auth.logout();
   }
