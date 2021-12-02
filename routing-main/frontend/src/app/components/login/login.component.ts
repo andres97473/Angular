@@ -34,12 +34,15 @@ export class LoginComponent implements OnInit {
           } else {
             this._auth.setToken(result.token);
             this._auth.setRol(result.rol);
+            this._auth.setPermisos(result.permisos);
+            this._auth.setEmail(result.email);
             this.router.navigate(['/admin']);
             this._auth.loginData = {
               message: result.message,
               permisos: result.permisos,
               rol: result.rol,
               success: result.success,
+              email: result.email,
             };
             console.log(this._auth.loginData);
           }

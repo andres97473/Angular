@@ -16,8 +16,14 @@ export class RoleGuard implements CanActivate {
   constructor(private auth: AuthService) {}
   canActivate() {
     let role = this.auth.getRol();
+    let permisos: any = this.auth.getPermisos();
 
-    if (role == 'administrador') {
+    if (
+      role == 'administrador' ||
+      permisos.includes(2) ||
+      permisos.includes(5)
+    ) {
+      //console.log('Permiso 2 true ', permisos.includes(2));
       return true;
     }
     //alert("You don't have admin rights");

@@ -12,6 +12,7 @@ export class AuthService {
     permisos: '',
     rol: '',
     success: 0,
+    email: '',
   };
 
   constructor(private router: Router, private http: HttpClient) {}
@@ -24,6 +25,12 @@ export class AuthService {
   setRol(rol: string): void {
     localStorage.setItem('rol', rol);
   }
+  setPermisos(permisos: string): void {
+    localStorage.setItem('permisos', permisos);
+  }
+  setEmail(email: string): void {
+    localStorage.setItem('email', email);
+  }
 
   // geters
 
@@ -33,7 +40,14 @@ export class AuthService {
   getRol(): string | null {
     return localStorage.getItem('rol');
   }
+  getPermisos(): string | null {
+    return localStorage.getItem('permisos');
+  }
+  getEmail(): string | null {
+    return localStorage.getItem('email');
+  }
 
+  // Login
   isLoggedIn() {
     return this.getToken() !== null;
   }
@@ -41,6 +55,8 @@ export class AuthService {
   logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('rol');
+    localStorage.removeItem('permisos');
+    localStorage.removeItem('email');
     this.router.navigate(['login']);
   }
 

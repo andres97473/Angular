@@ -53,9 +53,10 @@ module.exports = {
         return res.json({
           success: 1,
           message: "login successfully",
-          token: jsontoken,
           rol: results.rol,
           permisos: results.permisos,
+          email: results.email,
+          token: jsontoken,
         });
       } else {
         return res.json({

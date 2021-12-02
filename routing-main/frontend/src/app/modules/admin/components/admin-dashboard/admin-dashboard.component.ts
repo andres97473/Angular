@@ -6,7 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./admin-dashboard.component.scss'],
 })
 export class AdminDashboardComponent implements OnInit {
+  username = localStorage.getItem('email');
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log('user_name ', this.username);
+  }
 }
