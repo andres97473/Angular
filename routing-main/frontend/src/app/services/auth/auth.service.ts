@@ -17,34 +17,58 @@ export class AuthService {
 
   constructor(private router: Router, private http: HttpClient) {}
 
+  // leer cokkie
+  readCookie(name: string) {
+    return (
+      decodeURIComponent(
+        document.cookie.replace(
+          new RegExp(
+            '(?:(?:^|.*;)\\s*' +
+              name.replace(/[\-\.\+\*]/g, '\\$&') +
+              '\\s*\\=\\s*([^;]*).*$)|^.*$'
+          ),
+          '$1'
+        )
+      ) || null
+    );
+  }
+
   // seters
   setToken(token: string): void {
-    localStorage.setItem('token', token);
+    //localStorage.setItem('token', token);
+    document.cookie = `token=${token}`;
   }
 
   setRol(rol: string): void {
-    localStorage.setItem('rol', rol);
+    // localStorage.setItem('rol', rol);
+    document.cookie = `rol=${rol}`;
   }
   setPermisos(permisos: string): void {
-    localStorage.setItem('permisos', permisos);
+    // localStorage.setItem('permisos', permisos);
+    document.cookie = `permisos=${permisos}`;
   }
   setEmail(email: string): void {
-    localStorage.setItem('email', email);
+    // localStorage.setItem('email', email);
+    document.cookie = `email=${email}`;
   }
 
   // geters
 
   getToken(): string | null {
-    return localStorage.getItem('token');
+    //return localStorage.getItem('token');
+    return this.readCookie('token');
   }
   getRol(): string | null {
-    return localStorage.getItem('rol');
+    // return localStorage.getItem('rol');
+    return this.readCookie('rol');
   }
   getPermisos(): string | null {
-    return localStorage.getItem('permisos');
+    // return localStorage.getItem('permisos');
+    return this.readCookie('permisos');
   }
   getEmail(): string | null {
-    return localStorage.getItem('email');
+    // return localStorage.getItem('email');
+    return this.readCookie('email');
   }
 
   // Login
@@ -53,10 +77,19 @@ export class AuthService {
   }
 
   logout() {
-    localStorage.removeItem('token');
-    localStorage.removeItem('rol');
-    localStorage.removeItem('permisos');
-    localStorage.removeItem('email');
+    // eliminar cookies
+    document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC';
+    document.cookie = 'rol=; expires=Thu, 01 Jan 1970 00:00:00 UTC';
+    document.cookie = 'permisos=; expires=Thu, 01 Jan 1970 00:00:00 UTC';
+    document.cookie = 'email=; expires=Thu, 01 Jan 1970 00:00:00 UTC';
+
+    // eliminar localStorage
+    // localStorage.removeItem('token');
+    // localStorage.removeItem('rol');
+    // localStorage.removeItem('permisos');
+    // localStorage.removeItem('email');
+
+    // navigate login
     this.router.navigate(['login']);
   }
 
