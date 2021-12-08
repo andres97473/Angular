@@ -7,6 +7,7 @@ import { ServicesComponent } from './components/services/services.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { AdminUsersComponent } from './components/admin-users/admin-users.component';
 import { RoleGuard } from '../../guards/role/role.guard';
+import { CreateUserComponent } from './components/admin-users/create-user/create-user.component';
 
 const routes: Routes = [
   {
@@ -20,6 +21,11 @@ const routes: Routes = [
       {
         path: 'admin-users',
         component: AdminUsersComponent,
+        canActivate: [RoleGuard],
+      },
+      {
+        path: 'admin-users/create-user',
+        component: CreateUserComponent,
         canActivate: [RoleGuard],
       },
       { path: '', redirectTo: '/admin/home', pathMatch: 'full' },

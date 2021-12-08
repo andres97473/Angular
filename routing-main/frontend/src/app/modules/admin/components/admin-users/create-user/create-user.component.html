@@ -1,0 +1,68 @@
+<h4>Crear Usuario</h4>
+
+<hr />
+<div class="container">
+  <form autocomplete="off" [formGroup]="forma" (ngSubmit)="guardar()">
+    <div class="row mb-2">
+      <div class="col">
+        <input
+          type="text"
+          class="form-control"
+          id="id"
+          aria-describedby="emailHelp"
+          placeholder="id"
+          formControlName="id"
+        />
+      </div>
+      <div class="col">
+        <input
+          type="text"
+          class="form-control"
+          id="number"
+          aria-describedby="emailHelp"
+          placeholder="number"
+          formControlName="number"
+        />
+      </div>
+      <div class="col">
+        <input
+          type="text"
+          class="form-control"
+          id="firstname"
+          aria-describedby="emailHelp"
+          placeholder="firstname"
+          formControlName="firstname"
+        />
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <input
+          type="text"
+          class="form-control"
+          id="lastname"
+          aria-describedby="emailHelp"
+          placeholder="lastname"
+          formControlName="lastname"
+        />
+      </div>
+      <div class="col">
+        <input
+          type="text"
+          class="form-control"
+          id="rol"
+          aria-describedby="emailHelp"
+          placeholder="rol"
+          formControlName="rol"
+        />
+      </div>
+    </div>
+
+    <hr />
+
+    <div class="col-auto">
+      <button type="submit" class="btn btn-primary mb-2">Crear usuario</button>
+    </div>
+  </form>
+</div>

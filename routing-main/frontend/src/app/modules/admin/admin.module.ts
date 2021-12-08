@@ -12,6 +12,8 @@ import { AboutComponent } from './components/about/about.component';
 import { AdminUsersComponent } from './components/admin-users/admin-users.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HttpClientModule } from '@angular/common/http';
+import { CreateUserComponent } from './components/admin-users/create-user/create-user.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -23,13 +25,16 @@ import { HttpClientModule } from '@angular/common/http';
     ServicesComponent,
     AboutComponent,
     AdminUsersComponent,
+    CreateUserComponent,
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
     FontAwesomeModule,
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
-  exports: [FontAwesomeModule],
+  exports: [FontAwesomeModule, FormsModule, ReactiveFormsModule],
 })
 export class AdminModule {}
