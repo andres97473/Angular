@@ -50,6 +50,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
 export class DataTableComponent implements OnInit {
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+  panelOpenState = true;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 

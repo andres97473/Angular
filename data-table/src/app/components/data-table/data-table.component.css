@@ -27,3 +27,27 @@ table {
   text-align: center;
   font-weight: bold;
 }
+
+.mat-form-field + .mat-form-field {
+  margin-left: 8px;
+}
+
+.mat-expansion-background,
+.mat-focus-indicator,
+.mat-expansion-panel-header {
+  background: rgb(44, 65, 179);
+  color: white;
+}
+
+#mat-expansion-panel-header-0 {
+  background: rgb(44, 65, 179);
+  color: white;
+}
+
+mat-panel-title:hover {
+  background: rgb(44, 65, 179);
+}
+
+mat-expansion-panel-header:hover {
+  background: rgb(44, 65, 179);
+}
