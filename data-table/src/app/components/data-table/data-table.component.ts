@@ -48,7 +48,15 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./data-table.component.css'],
 })
 export class DataTableComponent implements OnInit {
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+  displayedColumns = [
+    'name',
+    'position',
+    'weight',
+    'symbol',
+    'position',
+    'weight',
+    'symbol',
+  ];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
   panelOpenState = true;
 

@@ -1,32 +1,35 @@
+/* inicio tabla */
+
+.example-container {
+  height: 400px;
+  width: 100%;
+  max-width: 100%;
+  overflow: auto;
+}
+
 table {
-  width: 100%;
+  width: 800px;
 }
 
-.demo-table {
-  width: 100%;
+td.mat-column-star {
+  width: 20px;
+  padding-right: 8px;
 }
 
-.mat-column-demo-position {
-  width: 32px;
-  border-right: 1px solid currentColor;
-  padding-right: 24px;
-  text-align: center;
+th.mat-column-position,
+td.mat-column-position {
+  padding-left: 8px;
 }
 
-.mat-column-demo-name {
-  padding-left: 16px;
-  font-size: 20px;
+.mat-table-sticky-border-elem-right {
+  border-left: 1px solid #e0e0e0;
 }
 
-.mat-column-demo-weight {
-  font-style: italic;
+.mat-table-sticky-border-elem-left {
+  border-right: 1px solid #e0e0e0;
 }
 
-.mat-column-demo-symbol {
-  width: 32px;
-  text-align: center;
-  font-weight: bold;
-}
+/* fin tabla */
 
 .mat-form-field + .mat-form-field {
   margin-left: 8px;
