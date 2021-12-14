@@ -1,13 +1,71 @@
-.container-user {
-  min-height: 400px;
+.example-container {
+  height: 400px;
   width: 100%;
-}
-
-.my-custom-scrollbar {
-  position: relative;
-  height: 200px;
+  max-width: 100%;
   overflow: auto;
 }
-.table-wrapper-scroll-y {
-  display: block;
+
+table {
+  width: 800px;
+}
+
+td.mat-column-star {
+  width: 20px;
+  padding-right: 8px;
+}
+
+th.mat-column-id,
+td.mat-column-id {
+  padding-left: 8px;
+}
+
+.mat-table-sticky-border-elem-right {
+  border-left: 1px solid #e0e0e0;
+}
+
+.mat-table-sticky-border-elem-left {
+  border-right: 1px solid #e0e0e0;
+}
+
+.demo-button-container {
+  padding-bottom: 16px;
+  margin-top: 4px;
+}
+
+.demo-button + .demo-button {
+  margin-left: 8px;
+}
+
+/* fin tabla */
+
+.mat-form-field + .mat-form-field {
+  margin-left: 4px;
+}
+
+.mat-expansion-background,
+.mat-focus-indicator,
+.mat-expansion-panel-header {
+  background: rgb(44, 65, 179);
+  color: white;
+}
+
+#mat-expansion-panel-header-0 {
+  background: rgb(44, 65, 179);
+  color: white;
+}
+
+mat-panel-title:hover {
+  background: rgb(44, 65, 179);
+}
+
+mat-expansion-panel-header {
+  height: 30px;
+}
+
+.mat-expansion-toggle-indicator-after {
+  height: 30px;
+}
+
+mat-expansion-panel-header:hover {
+  background: rgb(44, 65, 179);
 }
