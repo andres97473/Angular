@@ -7,6 +7,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [],
@@ -19,6 +20,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatExpansionModule,
     MatIconModule,
     MatButtonModule,
+    MatSortModule,
   ],
   exports: [
     MatSliderModule,
@@ -28,6 +30,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatExpansionModule,
     MatIconModule,
     MatButtonModule,
+    MatSortModule,
   ],
 })
 export class MaterialModule {}
