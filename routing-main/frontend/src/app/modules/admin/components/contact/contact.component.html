@@ -1,74 +1,99 @@
-<div class="container pt-5 pb-5">
-  <div class="col-12">
-    <div class="d-flex flex-wrap justify-content-between">
-      <div class="card shadow mt-2">
-        <div class="card-body">
-          <h5 class="card-title">Contact Component</h5>
-          <p class="card-text">
-            With supporting text below as a natural lead-in to additional
-            content.
-          </p>
-          <a class="btn btn-primary">Go somewhere</a>
+<!-- desplegable inicio -->
+<div class="container mt-2">
+  <mat-accordion>
+    <mat-expansion-panel
+      [expanded]="true"
+      (opened)="panelOpenState = true"
+      (closed)="panelOpenState = false"
+    >
+      <mat-expansion-panel-header
+        class="mat-expansion-background disable_ripple specific-class"
+      >
+        <mat-panel-title class="mat-expansion-background">
+          Usuarios
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <div class="mat-elevation-z8">
+        <!-- filtro inicio -->
+        <mat-form-field appearance="outline">
+          <input
+            matInput
+            (keyup)="applyFilter($event)"
+            autocomplete="off"
+            placeholder="Ex. ium"
+          />
+        </mat-form-field>
+        <!-- filtro fin -->
+
+        <!-- tabla inicio -->
+        <div class="example-container mat-elevation-z8">
+          <table mat-table [dataSource]="dataSource" matSort>
+            <!-- ID Column -->
+            <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+              <td mat-cell *matCellDef="let row">{{ row.id }}</td>
+            </ng-container>
+
+            <!-- Progress Column -->
+            <ng-container matColumnDef="number">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>number</th>
+              <td mat-cell *matCellDef="let row">{{ row.number }}</td>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="firstName">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                firstName
+              </th>
+              <td mat-cell *matCellDef="let row">{{ row.firstName }}</td>
+            </ng-container>
+
+            <!-- Fruit Column -->
+            <ng-container matColumnDef="lastName">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                lastName
+              </th>
+              <td mat-cell *matCellDef="let row">{{ row.lastName }}</td>
+            </ng-container>
+
+            <!-- Fruit Column -->
+            <ng-container matColumnDef="gender">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>gender</th>
+              <td mat-cell *matCellDef="let row">{{ row.gender }}</td>
+            </ng-container>
+
+            <!-- Fruit Column -->
+            <ng-container matColumnDef="email">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>email</th>
+              <td mat-cell *matCellDef="let row">{{ row.email }}</td>
+            </ng-container>
+
+            <!-- Fruit Column -->
+            <ng-container matColumnDef="rol">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>rol</th>
+              <td mat-cell *matCellDef="let row">{{ row.rol }}</td>
+            </ng-container>
+
+            <!-- Fruit Column -->
+            <ng-container matColumnDef="permisos">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                permisos
+              </th>
+              <td mat-cell *matCellDef="let row">{{ row.permisos }}</td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+          </table>
         </div>
+        <!-- tabla fin -->
+
+        <mat-paginator
+          [pageSizeOptions]="[10, 20, 30]"
+          aria-label="Select page of users"
+        ></mat-paginator>
       </div>
-      <div class="card shadow mt-2">
-        <div class="card-body">
-          <h5 class="card-title">Contact Component</h5>
-          <p class="card-text">
-            Content itself is what the user derives value from. Thus, "content"
-            can refer to the information provided through the medium, the way in
-            which the information was presented, as well as the added features
-            included in the medium in which that information was delivered. The
-            medium, however, provides little to no value to the end-user without
-            the information and experiences that make up the content.
-          </p>
-          <a class="btn btn-primary">Go somewhere</a>
-        </div>
-      </div>
-      <div class="card shadow mt-2">
-        <div class="card-body">
-          <h5 class="card-title">Contact Component</h5>
-          <p class="card-text">
-            Content itself is what the user derives value from. Thus, "content"
-            can refer to the information provided through the medium, the way in
-            which the information was presented, as well as the added features
-            included in the medium in which that information was delivered. The
-            medium, however, provides little to no value to the end-user without
-            the information and experiences that make up the content.
-          </p>
-          <a class="btn btn-primary">Go somewhere</a>
-        </div>
-      </div>
-      <div class="card shadow mt-2">
-        <div class="card-body">
-          <h5 class="card-title">Contact Component</h5>
-          <p class="card-text">
-            With supporting text below as a natural lead-in to additional
-            content.
-          </p>
-          <a class="btn btn-primary">Go somewhere</a>
-        </div>
-      </div>
-      <div class="card shadow mt-2">
-        <div class="card-body">
-          <h5 class="card-title">Contact Component</h5>
-          <p class="card-text">
-            With supporting text below as a natural lead-in to additional
-            content.
-          </p>
-          <a class="btn btn-primary">Go somewhere</a>
-        </div>
-      </div>
-      <div class="card shadow mt-2">
-        <div class="card-body">
-          <h5 class="card-title">Contact Component</h5>
-          <p class="card-text">
-            With supporting text below as a natural lead-in to additional
-            content.
-          </p>
-          <a class="btn btn-primary">Go somewhere</a>
-        </div>
-      </div>
-    </div>
-  </div>
+    </mat-expansion-panel>
+  </mat-accordion>
 </div>
