@@ -14,17 +14,24 @@
         </mat-panel-title>
       </mat-expansion-panel-header>
 
-      <div class="mat-elevation-z8">
-        <!-- filtro inicio -->
-        <mat-form-field appearance="outline">
-          <input
-            matInput
-            (keyup)="applyFilter($event)"
-            autocomplete="off"
-            placeholder="Ex. ium"
-          />
+      <div class="mat-elevation-z8 mt-2 border">
+        <!-- filtro 2 -->
+        <!-- id -->
+        <mat-form-field class="filter" floatLabel="never" appearance="outline">
+          <mat-label>id</mat-label>
+          <input matInput [formControl]="idFilter" />
         </mat-form-field>
-        <!-- filtro fin -->
+        <!-- number -->
+        <mat-form-field class="filter" floatLabel="never" appearance="outline">
+          <mat-label>number</mat-label>
+          <input matInput [formControl]="numberFilter" />
+        </mat-form-field>
+        <!-- gender -->
+        <mat-form-field class="filter" floatLabel="never" appearance="outline">
+          <mat-label>gender</mat-label>
+          <input matInput [formControl]="genderFilter" />
+        </mat-form-field>
+        <!-- filtro 2 -->
 
         <!-- tabla inicio -->
         <div class="example-container mat-elevation-z8">
