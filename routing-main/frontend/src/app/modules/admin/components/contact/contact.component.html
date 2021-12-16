@@ -1,5 +1,5 @@
 <!-- desplegable inicio -->
-<div class="container mt-2">
+<div class="container mt-2 mb-2">
   <mat-accordion>
     <mat-expansion-panel
       [expanded]="true"
@@ -16,6 +16,7 @@
 
       <div class="mat-elevation-z8 mt-2 border">
         <!-- filtro 2 -->
+
         <!-- id -->
         <mat-form-field class="filter" floatLabel="never" appearance="outline">
           <mat-label>id</mat-label>
@@ -26,11 +27,17 @@
           <mat-label>number</mat-label>
           <input matInput [formControl]="numberFilter" />
         </mat-form-field>
+
         <!-- gender -->
-        <mat-form-field class="filter" floatLabel="never" appearance="outline">
-          <mat-label>gender</mat-label>
-          <input matInput [formControl]="genderFilter" />
+
+        <mat-form-field appearance="outline">
+          <mat-select [formControl]="genderFilter">
+            <mat-option value="">Sexo</mat-option>
+            <mat-option value="m">Male</mat-option>
+            <mat-option value="f">Female</mat-option>
+          </mat-select>
         </mat-form-field>
+
         <!-- filtro 2 -->
 
         <!-- tabla inicio -->
