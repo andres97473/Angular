@@ -6,10 +6,6 @@
   margin-bottom: -10px;
 }
 
-.filter {
-  text-align: top;
-}
-
 td,
 th {
   width: 5%;
@@ -39,9 +35,7 @@ th {
 
 .example-container {
   height: 400px;
-  max-width: 98%;
   overflow: auto;
-  margin-left: 10px;
 }
 
 ::ng-deep .mat-sort-header-arrow {

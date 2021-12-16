@@ -86,4 +86,10 @@ export class ContactComponent implements OnInit, AfterViewInit {
     };
     return filterFunction;
   }
+
+  limpiarFiltro() {
+    this.idFilter.setValue('');
+    this.numberFilter.setValue('');
+    this.genderFilter.setValue('');
+  }
 }
