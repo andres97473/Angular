@@ -1,3 +1,6 @@
+$primary: rgb(44, 65, 179);
+$secondary: #f4aa0b;
+
 .mat-form-field {
   font-size: 10px;
   width: 100px;
@@ -17,7 +20,7 @@ td {
 }
 
 th {
-  background: rgb(44, 65, 179);
+  background: $primary;
   border: 1px solid rgb(228, 228, 228);
   color: #e0e0e0;
 }
@@ -94,10 +97,6 @@ td.mat-column-permisos {
   margin-left: 4px;
 }
 
-th.mat-sort-header-sorted {
-  color: black;
-}
-
 /* fin tabla */
 
 .mat-form-field + .mat-form-field {
@@ -107,21 +106,21 @@ th.mat-sort-header-sorted {
 .mat-expansion-background,
 .mat-focus-indicator,
 .mat-expansion-panel-header {
-  background: rgb(44, 65, 179);
+  background: $primary;
   color: white;
 }
 
 #mat-expansion-panel-header-0 {
-  background: rgb(44, 65, 179);
+  background: $primary;
   color: white;
 }
 
 .disable_ripple:hover {
-  background: rgb(44, 65, 179);
+  background: $primary;
 }
 
 mat-panel-title:hover {
-  background: rgb(44, 65, 179);
+  background: $primary;
 }
 
 mat-expansion-panel-header {
@@ -133,10 +132,19 @@ mat-expansion-panel-header {
 }
 
 mat-expansion-panel-header:hover {
-  background: rgb(44, 65, 179);
+  background: $primary;
 }
 
 .mat-option {
   background: white;
   color: black;
+}
+
+.mat-row {
+  &.demo-row-is-clicked {
+    background: $secondary;
+    td {
+      color: white;
+    }
+  }
 }

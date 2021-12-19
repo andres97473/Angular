@@ -107,13 +107,21 @@
             </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+            <tr
+              mat-row
+              *matRowDef="let row; columns: displayedColumns"
+              [class.demo-row-is-clicked]="selectedRow === row"
+              (click)="selectedRow = selectedRow === row ? null : row"
+              (click)="selectRow(row)"
+              (dblclick)="myFunction(row)"
+            ></tr>
           </table>
         </div>
         <!-- tabla fin -->
 
         <mat-paginator
           [pageSizeOptions]="[10, 20, 30]"
+          showFirstLastButtons
           aria-label="Select page of users"
         ></mat-paginator>
       </div>

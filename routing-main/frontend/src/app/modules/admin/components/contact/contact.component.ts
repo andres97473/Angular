@@ -45,6 +45,9 @@ export class ContactComponent implements OnInit, AfterViewInit {
     gender: '',
   };
 
+  // select row
+  selectedRow!: Users | null;
+
   constructor(private _us: AdminUserService) {}
   ngOnInit(): void {
     this.cargarUsuarios();
@@ -91,5 +94,14 @@ export class ContactComponent implements OnInit, AfterViewInit {
     this.idFilter.setValue('');
     this.numberFilter.setValue('');
     this.genderFilter.setValue('');
+  }
+
+  selectRow(row: any) {
+    //console.log(row);
+  }
+
+  myFunction(row: any) {
+    console.log('doble click');
+    alert(row.id);
   }
 }
