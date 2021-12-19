@@ -94,14 +94,18 @@ export class ContactComponent implements OnInit, AfterViewInit {
     this.idFilter.setValue('');
     this.numberFilter.setValue('');
     this.genderFilter.setValue('');
+
+    // deseleccionar row
+    this.selectedRow = null;
   }
 
   selectRow(row: any) {
     //console.log(row);
   }
 
-  myFunction(row: any) {
+  myFunction(row: Users) {
+    this.selectedRow = row;
     console.log('doble click');
-    alert(row.id);
+    alert(`id: ${row.id} - nombre: ${row.firstName} ${row.lastName}`);
   }
 }
