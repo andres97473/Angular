@@ -1,13 +1,12 @@
+$primary: rgb(44, 65, 179);
+$secondary: #f4aa0b;
+
 .mat-form-field {
   font-size: 10px;
-  width: 90%;
+  width: 100px;
   margin-left: 10px;
   margin-right: 10px;
-  margin-bottom: -5px;
-}
-
-.btn-right {
-  text-align: right;
+  margin-bottom: -10px;
 }
 
 td,
@@ -21,9 +20,9 @@ td {
 }
 
 th {
-  background: rgb(44, 65, 179);
+  background: $primary;
   border: 1px solid rgb(228, 228, 228);
-  color: #e0e0e0;
+  color: white;
 }
 
 .mat-header-row {
@@ -39,9 +38,7 @@ th {
 
 .example-container {
   height: 400px;
-  max-width: 98%;
   overflow: auto;
-  margin-left: 10px;
 }
 
 ::ng-deep .mat-sort-header-arrow {
@@ -54,7 +51,6 @@ th {
 
 mat-paginator {
   margin-top: 5px;
-  border: 1px solid rgb(196, 196, 196);
 }
 
 mat-form-field {
@@ -63,8 +59,8 @@ mat-form-field {
 
 th.mat-column-id,
 th.mat-column-number,
-th.mat-column-firstName,
-th.mat-column-lastName,
+th.mat-column-first_name,
+th.mat-column-last_name,
 th.mat-column-gender,
 th.mat-column-email,
 th.mat-column-rol,
@@ -74,8 +70,8 @@ th.mat-column-permisos {
 
 td.mat-column-id,
 td.mat-column-number,
-td.mat-column-firstName,
-td.mat-column-lastName,
+td.mat-column-first_name,
+td.mat-column-last_name,
 td.mat-column-gender,
 td.mat-column-email,
 td.mat-column-rol,
@@ -100,10 +96,6 @@ td.mat-column-permisos {
   margin-left: 4px;
 }
 
-th.mat-sort-header-sorted {
-  color: black;
-}
-
 /* fin tabla */
 
 .mat-form-field + .mat-form-field {
@@ -113,21 +105,21 @@ th.mat-sort-header-sorted {
 .mat-expansion-background,
 .mat-focus-indicator,
 .mat-expansion-panel-header {
-  background: rgb(44, 65, 179);
+  background: $primary;
   color: white;
 }
 
 #mat-expansion-panel-header-0 {
-  background: rgb(44, 65, 179);
+  background: $primary;
   color: white;
 }
 
 .disable_ripple:hover {
-  background: rgb(44, 65, 179);
+  background: $primary;
 }
 
 mat-panel-title:hover {
-  background: rgb(44, 65, 179);
+  background: $primary;
 }
 
 mat-expansion-panel-header {
@@ -139,5 +131,25 @@ mat-expansion-panel-header {
 }
 
 mat-expansion-panel-header:hover {
-  background: rgb(44, 65, 179);
+  background: $primary;
+}
+
+.mat-option {
+  background: white;
+  color: black;
+}
+
+.mat-row {
+  &.demo-row-is-clicked {
+    background: $secondary;
+    td {
+      border: 1px solid #f3f3f3;
+      color: white;
+    }
+  }
+}
+
+.border {
+  border: 1px solid rgb(196, 196, 196);
+  margin: 2px 2px 2px 2px;
 }

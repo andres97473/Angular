@@ -1,93 +1,154 @@
-<div class="container mt-2">
+<!-- desplegable inicio -->
+<div class="container mt-2 mb-2">
   <mat-accordion>
     <mat-expansion-panel
       [expanded]="true"
       (opened)="panelOpenState = true"
       (closed)="panelOpenState = false"
     >
-      <mat-expansion-panel-header class="mat-expansion-background">
+      <mat-expansion-panel-header
+        class="mat-expansion-background disable_ripple specific-class"
+      >
         <mat-panel-title class="mat-expansion-background">
           Usuarios
         </mat-panel-title>
       </mat-expansion-panel-header>
 
-      <!-- inicio tabla -->
+      <div class="mat-elevation-z8 mt-2 border">
+        <!-- filtro 2 -->
 
-      <div class="demo-button-container">
-        <button mat-raised-button (click)="addData()" class="demo-button">
-          Add data
+        <!-- id -->
+        <mat-form-field class="filter" floatLabel="never" appearance="outline">
+          <mat-label>id</mat-label>
+          <input matInput [formControl]="idFilter" />
+        </mat-form-field>
+
+        <!-- number -->
+        <mat-form-field class="filter" floatLabel="never" appearance="outline">
+          <mat-label>number</mat-label>
+          <input matInput [formControl]="numberFilter" />
+        </mat-form-field>
+
+        <!-- firstName -->
+        <mat-form-field class="filter" floatLabel="never" appearance="outline">
+          <mat-label>first Name</mat-label>
+          <input matInput [formControl]="firstNameFilter" />
+        </mat-form-field>
+
+        <!-- number -->
+        <mat-form-field class="filter" floatLabel="never" appearance="outline">
+          <mat-label>last Name</mat-label>
+          <input matInput [formControl]="lastNameFilter" />
+        </mat-form-field>
+
+        <!-- gender -->
+        <mat-form-field appearance="outline">
+          <mat-select [formControl]="genderFilter">
+            <mat-option value="">Sexo</mat-option>
+            <mat-option value="m">Male</mat-option>
+            <mat-option value="f">Female</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <button
+          class=""
+          mat-raised-button
+          color="primary"
+          (click)="limpiarFiltro()"
+        >
+          Limpiar Filtro
         </button>
+
+        <!-- filtro 2 -->
+
+        <!-- tabla inicio -->
+        <div class="example-container mat-elevation-z8">
+          <table mat-table [dataSource]="dataSource" matSort>
+            <!-- ID Column -->
+            <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+              <td mat-cell *matCellDef="let row">{{ row.id }}</td>
+            </ng-container>
+
+            <!-- Progress Column -->
+            <ng-container matColumnDef="number">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>number</th>
+              <td mat-cell *matCellDef="let row">{{ row.number }}</td>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="first_name">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                first Name
+              </th>
+              <td mat-cell *matCellDef="let row">{{ row.first_name }}</td>
+            </ng-container>
+
+            <!-- Fruit Column -->
+            <ng-container matColumnDef="last_name">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                last Name
+              </th>
+              <td mat-cell *matCellDef="let row">{{ row.last_name }}</td>
+            </ng-container>
+
+            <!-- Fruit Column -->
+            <ng-container matColumnDef="gender">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>gender</th>
+              <td mat-cell *matCellDef="let row">{{ row.gender }}</td>
+            </ng-container>
+
+            <!-- Fruit Column -->
+            <ng-container matColumnDef="email">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>email</th>
+              <td mat-cell *matCellDef="let row">{{ row.email }}</td>
+            </ng-container>
+
+            <!-- Fruit Column -->
+            <ng-container matColumnDef="rol">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>rol</th>
+              <td mat-cell *matCellDef="let row">{{ row.rol }}</td>
+            </ng-container>
+
+            <!-- Fruit Column -->
+            <ng-container matColumnDef="permisos">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                permisos
+              </th>
+              <td mat-cell *matCellDef="let row">{{ row.permisos }}</td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr
+              mat-row
+              *matRowDef="let row; columns: displayedColumns"
+              [class.demo-row-is-clicked]="selectedRow === row"
+              (click)="selectedRow = selectedRow === row ? null : row"
+              (click)="selectRow(row)"
+              (dblclick)="myFunction(row)"
+            ></tr>
+          </table>
+        </div>
+        <!-- tabla fin -->
+
+        <div class="border">
+          <div class="row align-items-center">
+            <div class="col">
+              <button class="ml-2" mat-raised-button (click)="abrirDialogo()">
+                Agregar Usuario
+              </button>
+            </div>
+            <div class="col">
+              <mat-paginator
+                [pageSizeOptions]="[10, 20, 30]"
+                showFirstLastButtons
+                aria-label="Select page of users"
+              >
+              </mat-paginator>
+            </div>
+          </div>
+        </div>
       </div>
-
-      <div class="example-container mat-elevation-z8">
-        <table mat-table [dataSource]="dataSource" matSort>
-          <!-- Id Column -->
-          <ng-container matColumnDef="id">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
-            <td mat-cell *matCellDef="let element">{{ element.id }}</td>
-          </ng-container>
-
-          <!-- Number Column -->
-          <ng-container matColumnDef="number">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>
-              No.Documento
-            </th>
-            <td mat-cell *matCellDef="let element">{{ element.number }}</td>
-          </ng-container>
-
-          <!-- firstName Column -->
-          <ng-container matColumnDef="firstName">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>firstName</th>
-            <td mat-cell *matCellDef="let element">{{ element.firstName }}</td>
-          </ng-container>
-
-          <!-- lastName Column -->
-          <ng-container matColumnDef="lastName">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>lastName</th>
-            <td mat-cell *matCellDef="let element">{{ element.lastName }}</td>
-          </ng-container>
-
-          <!-- gender Column -->
-          <ng-container matColumnDef="gender">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>gender</th>
-            <td mat-cell *matCellDef="let element">{{ element.gender }}</td>
-          </ng-container>
-
-          <!-- email Column -->
-          <ng-container matColumnDef="email">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>email</th>
-            <td mat-cell *matCellDef="let element">{{ element.email }}</td>
-          </ng-container>
-
-          <!-- rol Column -->
-          <ng-container matColumnDef="rol">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>rol</th>
-            <td mat-cell *matCellDef="let element">{{ element.rol }}</td>
-          </ng-container>
-
-          <!-- permisos Column -->
-          <ng-container matColumnDef="permisos">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>permisos</th>
-            <td mat-cell *matCellDef="let element">{{ element.permisos }}</td>
-          </ng-container>
-
-          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr
-            mat-row
-            *matRowDef="let row; columns: displayedColumns"
-            (click)="datos(row)"
-          ></tr>
-        </table>
-      </div>
-      <mat-paginator
-        class="mt-3"
-        [pageSizeOptions]="[10, 20]"
-        showFirstLastButtons
-        aria-label="Select page of periodic elements"
-      >
-      </mat-paginator>
-      <!-- fin tabla -->
     </mat-expansion-panel>
   </mat-accordion>
 </div>
-<!-- fin expansion -->

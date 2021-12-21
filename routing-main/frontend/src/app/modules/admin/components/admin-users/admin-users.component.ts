@@ -1,11 +1,12 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ViewChild, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
-import { MatSort, Sort } from '@angular/material/sort';
-
-import { AdminUserService } from './admin-user.service';
-import { Users } from './iadmin-users.metadata';
-import { LiveAnnouncer } from '@angular/cdk/a11y';
+import { AdminUserService } from '../admin-users/admin-user.service';
+import { Users } from '../admin-users/iadmin-users.metadata';
+import { MatDialog } from '@angular/material/dialog';
+import { CreateUserComponent } from '../admin-users/create-user/create-user.component';
 
 @Component({
   selector: 'app-admin-users',
@@ -14,75 +15,173 @@ import { LiveAnnouncer } from '@angular/cdk/a11y';
 })
 export class AdminUsersComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatTable) table!: MatTable<Users>;
   @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild(MatTable) tabla1!: MatTable<Users>;
 
-  panelOpenState = true;
-
-  displayedColumns = [
+  displayedColumns: string[] = [
     'id',
     'number',
     'first_name',
     'last_name',
     'gender',
     'email',
-    'password',
     'rol',
     'permisos',
   ];
-
-  //users: Users[] = [];
-
   dataSource!: MatTableDataSource<Users>;
 
-  constructor(
-    private _au: AdminUserService,
-    private _liveAnnouncer: LiveAnnouncer
-  ) {}
+  panelOpenState = true;
 
+  // controls filters
+  idFilter = new FormControl('');
+  numberFilter = new FormControl('');
+  firstNameFilter = new FormControl('');
+  lastNameFilter = new FormControl('');
+  genderFilter = new FormControl('');
+  filterValues = {
+    id: '',
+    number: '',
+    first_name: '',
+    last_name: '',
+    gender: '',
+  };
+
+  // select row
+  selectedRow!: Users | null;
+
+  constructor(private _us: AdminUserService, public dialog: MatDialog) {}
   ngOnInit(): void {
     this.cargarUsuarios();
-    this.dataSource.sort = this.sort;
+
+    this.idFilter.valueChanges.subscribe((id) => {
+      this.filterValues.id = id;
+      this.dataSource.filter = JSON.stringify(this.filterValues);
+    });
+    this.numberFilter.valueChanges.subscribe((number) => {
+      this.filterValues.number = number;
+      this.dataSource.filter = JSON.stringify(this.filterValues);
+    });
+    this.firstNameFilter.valueChanges.subscribe((first_name) => {
+      this.filterValues.first_name = first_name;
+      this.dataSource.filter = JSON.stringify(this.filterValues);
+    });
+    this.lastNameFilter.valueChanges.subscribe((last_name) => {
+      this.filterValues.last_name = last_name;
+      this.dataSource.filter = JSON.stringify(this.filterValues);
+    });
+    this.genderFilter.valueChanges.subscribe((gender) => {
+      this.filterValues.gender = gender;
+      this.dataSource.filter = JSON.stringify(this.filterValues);
+    });
   }
 
-  ngAfterViewInit() {}
+  ngAfterViewInit(): void {}
 
   cargarUsuarios() {
-    this._au.getAdminUsers().subscribe((data: Users[]) => {
-      //this.users = data;
-      //console.log(this.users);
-      this.dataSource = new MatTableDataSource(data);
-      console.log(this.dataSource);
+    this._us.getAdminUsers().subscribe((data: Users[]) => {
+      //console.log(data);
 
-      if (this.dataSource) {
-        this.dataSource.paginator = this.paginator;
+      this.dataSource = new MatTableDataSource(data);
+      this.dataSource.filterPredicate = this.createFilter();
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    });
+  }
+
+  createFilter(): (data: any, filter: string) => boolean {
+    let filterFunction = (data: any, filter: string) => {
+      let searchTerms = JSON.parse(filter);
+      return (
+        data.id.toString().toLowerCase().indexOf(searchTerms.id) !== -1 &&
+        data.number.toString().toLowerCase().indexOf(searchTerms.number) !==
+          -1 &&
+        data.first_name.toLowerCase().indexOf(searchTerms.first_name) !== -1 &&
+        data.last_name.toLowerCase().indexOf(searchTerms.last_name) !== -1 &&
+        data.gender.toLowerCase().indexOf(searchTerms.gender) !== -1
+      );
+    };
+    return filterFunction;
+  }
+
+  limpiarFiltro() {
+    this.idFilter.setValue('');
+    this.numberFilter.setValue('');
+    this.firstNameFilter.setValue('');
+    this.lastNameFilter.setValue('');
+    this.genderFilter.setValue('');
+
+    // deseleccionar row
+    this.selectedRow = null;
+  }
+
+  selectRow(row: any) {
+    //console.log(row);
+  }
+
+  myFunction(row: Users) {
+    this.selectedRow = row;
+    console.log('doble click');
+    alert(`id: ${row.id} - nombre: ${row.first_name} ${row.last_name}`);
+  }
+
+  abrirDialogo() {
+    const nUser: Users = {
+      number: '',
+      first_name: '',
+      last_name: '',
+      gender: '',
+      email: '',
+      password: '',
+      rol: '',
+      permisos: '',
+    };
+    const dialogo1 = this.dialog.open(CreateUserComponent, {
+      // valores por defecto al abrir formulario
+      data: nUser,
+    });
+
+    dialogo1.afterClosed().subscribe((user) => {
+      if (user != undefined) {
+        this.agregarUser(user);
+        //console.log(user);
       }
     });
   }
 
-  addData() {
-    const elemento = {
-      id: 30,
-      number: 1010202020,
-      first_name: 'and',
-      last_name: 'fel',
-      email: 'and@ht.com',
-      password: '12345678',
-      gender: 'm',
-      permisos: '[1,2,3,4]',
-      rol: 'writer',
-    };
+  // agregar user a datasource
+  // agregarUser(user: User) {
+  //   this.dataSource.data.push(
+  //     new User(
+  //       user.id,
+  //       user.number,
+  //       user.firstName,
+  //       user.lastName,
+  //       user.gender,
+  //       user.email,
+  //       user.rol,
+  //       user.permisos
+  //     )
+  //   );
 
-    this.dataSource.data.push(elemento);
+  //   this.dataSource.data = this.dataSource.data.slice();
+  // }
 
-    console.log('usuario agregado');
+  agregarUser(user: Users) {
+    // se puede eliminar datos para que se acople a lo que recibe el API
+
+    delete user.id;
+
+    //console.log(user);
+
+    this._us.agregarUser(user).subscribe(
+      (res) => {
+        console.log(res);
+        //this.router.navigate(['/admin/contact']);
+        this.cargarUsuarios();
+
+        this.dataSource.data = this.dataSource.data.slice();
+      },
+      (err) => console.error(err)
+    );
   }
-
-  datos(row: any) {
-    console.log('evento');
-    console.log(row);
-    alert(row.email);
-  }
-
-  removeData() {}
 }
