@@ -3,11 +3,14 @@ import { AfterViewInit, Component, ViewChild, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { AdminUserService } from '../admin-users/admin-user.service';
 import { Users } from '../admin-users/iadmin-users.metadata';
+import { MatDialog } from '@angular/material/dialog';
+import { User } from './user';
 
 import * as _ from 'lodash';
+import { CreateUserComponent } from '../admin-users/create-user/create-user.component';
 
 @Component({
   selector: 'app-contact',
@@ -17,6 +20,7 @@ import * as _ from 'lodash';
 export class ContactComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild(MatTable) tabla1!: MatTable<Users>;
 
   displayedColumns: string[] = [
     'id',
@@ -28,12 +32,9 @@ export class ContactComponent implements OnInit, AfterViewInit {
     'rol',
     'permisos',
   ];
-  dataSource!: MatTableDataSource<Users>;
+  dataSource!: MatTableDataSource<User>;
 
   panelOpenState = true;
-
-  //users service
-  userService: Users[] = [];
 
   // controls filters
   idFilter = new FormControl('');
@@ -46,9 +47,9 @@ export class ContactComponent implements OnInit, AfterViewInit {
   };
 
   // select row
-  selectedRow!: Users | null;
+  selectedRow!: User | null;
 
-  constructor(private _us: AdminUserService) {}
+  constructor(private _us: AdminUserService, public dialog: MatDialog) {}
   ngOnInit(): void {
     this.cargarUsuarios();
 
@@ -69,7 +70,7 @@ export class ContactComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {}
 
   cargarUsuarios() {
-    this._us.getAdminUsers().subscribe((data: Users[]) => {
+    this._us.getAdminUsers().subscribe((data: User[]) => {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.filterPredicate = this.createFilter();
       this.dataSource.paginator = this.paginator;
@@ -103,9 +104,39 @@ export class ContactComponent implements OnInit, AfterViewInit {
     //console.log(row);
   }
 
-  myFunction(row: Users) {
+  myFunction(row: User) {
     this.selectedRow = row;
     console.log('doble click');
     alert(`id: ${row.id} - nombre: ${row.firstName} ${row.lastName}`);
+  }
+
+  abrirDialogo() {
+    const dialogo1 = this.dialog.open(CreateUserComponent, {
+      data: new User(0, 0, '', '', '', '', '', ''),
+    });
+
+    dialogo1.afterClosed().subscribe((user) => {
+      if (user != undefined) {
+        this.agregar(user);
+        //console.log(user);
+      }
+    });
+  }
+
+  agregar(user: User) {
+    this.dataSource.data.push(
+      new User(
+        user.id,
+        user.number,
+        user.firstName,
+        user.lastName,
+        user.gender,
+        user.email,
+        user.rol,
+        user.permisos
+      )
+    );
+
+    this.dataSource.data = this.dataSource.data.slice();
   }
 }

@@ -1,68 +1,92 @@
-<h4>Crear Usuario</h4>
+<div>
+  <h1 mat-dialog-title>Usuario</h1>
+  <div mat-dialog-content>
+    <div
+      style="
+        display: flex;
+        flex-direction: column;
+        margin: 1rem auto;
+        max-width: 600px;
+        padding: 1rem;
+      "
+    >
+      <mat-form-field>
+        <input
+          matInput
+          [(ngModel)]="data.id"
+          type="number"
+          placeholder="Ingrese id"
+        />
+      </mat-form-field>
 
-<hr />
-<div class="container">
-  <form autocomplete="off" [formGroup]="forma" (ngSubmit)="guardar()">
-    <div class="row mb-2">
-      <div class="col">
+      <mat-form-field>
         <input
-          type="text"
-          class="form-control"
-          id="id"
-          aria-describedby="emailHelp"
-          placeholder="id"
-          formControlName="id"
+          matInput
+          [(ngModel)]="data.number"
+          type="number"
+          placeholder="Ingrese number"
         />
-      </div>
-      <div class="col">
+      </mat-form-field>
+
+      <mat-form-field>
         <input
+          matInput
+          [(ngModel)]="data.firstName"
           type="text"
-          class="form-control"
-          id="number"
-          aria-describedby="emailHelp"
-          placeholder="number"
-          formControlName="number"
+          placeholder="Ingrese nombre"
         />
-      </div>
-      <div class="col">
+      </mat-form-field>
+
+      <mat-form-field>
         <input
+          matInput
+          [(ngModel)]="data.lastName"
           type="text"
-          class="form-control"
-          id="firstname"
-          aria-describedby="emailHelp"
-          placeholder="firstname"
-          formControlName="firstname"
+          placeholder="Ingrese Apellido"
         />
-      </div>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input
+          matInput
+          [(ngModel)]="data.gender"
+          type="text"
+          placeholder="Ingrese genero"
+        />
+      </mat-form-field>
+
+      <mat-form-field>
+        <input
+          matInput
+          [(ngModel)]="data.email"
+          type="text"
+          placeholder="Ingrese email"
+        />
+      </mat-form-field>
+
+      <mat-form-field>
+        <input
+          matInput
+          [(ngModel)]="data.rol"
+          type="text"
+          placeholder="Ingrese rol"
+        />
+      </mat-form-field>
+
+      <mat-form-field>
+        <input
+          matInput
+          [(ngModel)]="data.permisos"
+          type="text"
+          placeholder="Ingrese permisos"
+        />
+      </mat-form-field>
     </div>
-
-    <div class="row">
-      <div class="col">
-        <input
-          type="text"
-          class="form-control"
-          id="lastname"
-          aria-describedby="emailHelp"
-          placeholder="lastname"
-          formControlName="lastname"
-        />
-      </div>
-      <div class="col">
-        <input
-          type="text"
-          class="form-control"
-          id="rol"
-          aria-describedby="emailHelp"
-          placeholder="rol"
-          formControlName="rol"
-        />
-      </div>
-    </div>
-
-    <hr />
-
-    <div class="col-auto">
-      <button type="submit" class="btn btn-primary mb-2">Crear usuario</button>
-    </div>
-  </form>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="cancelar()">Cancelar</button>
+    <button mat-button [mat-dialog-close]="data" cdkFocusInitial>
+      Confirmar
+    </button>
+  </div>
 </div>
