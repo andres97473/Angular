@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { User } from '../../contact/user';
+import { Users } from '../iadmin-users.metadata';
+
 import {
   MatDialog,
   MatDialogRef,
@@ -19,15 +20,15 @@ export class CreateUserComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<CreateUserComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: User
+    @Inject(MAT_DIALOG_DATA) public data: Users
   ) {
     this.forma = this.fb.group({
-      id: [''],
       number: [''],
       firstName: [''],
       lastName: [''],
       gender: [''],
       email: [''],
+      password: [''],
       rol: [''],
       permisos: [''],
     });

@@ -22,10 +22,11 @@ export class AdminUsersComponent implements OnInit {
   displayedColumns = [
     'id',
     'number',
-    'firstName',
-    'lastName',
+    'first_name',
+    'last_name',
     'gender',
     'email',
+    'password',
     'rol',
     'permisos',
   ];
@@ -63,9 +64,10 @@ export class AdminUsersComponent implements OnInit {
     const elemento = {
       id: 30,
       number: 1010202020,
-      firstName: 'and',
-      lastName: 'fel',
+      first_name: 'and',
+      last_name: 'fel',
       email: 'and@ht.com',
+      password: '12345678',
       gender: 'm',
       permisos: '[1,2,3,4]',
       rol: 'writer',

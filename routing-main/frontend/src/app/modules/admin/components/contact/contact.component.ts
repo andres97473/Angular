@@ -7,9 +7,6 @@ import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { AdminUserService } from '../admin-users/admin-user.service';
 import { Users } from '../admin-users/iadmin-users.metadata';
 import { MatDialog } from '@angular/material/dialog';
-import { User } from './user';
-
-import * as _ from 'lodash';
 import { CreateUserComponent } from '../admin-users/create-user/create-user.component';
 
 @Component({
@@ -25,29 +22,33 @@ export class ContactComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = [
     'id',
     'number',
-    'firstName',
-    'lastName',
+    'first_name',
+    'last_name',
     'gender',
     'email',
     'rol',
     'permisos',
   ];
-  dataSource!: MatTableDataSource<User>;
+  dataSource!: MatTableDataSource<Users>;
 
   panelOpenState = true;
 
   // controls filters
   idFilter = new FormControl('');
   numberFilter = new FormControl('');
+  firstNameFilter = new FormControl('');
+  lastNameFilter = new FormControl('');
   genderFilter = new FormControl('');
   filterValues = {
     id: '',
     number: '',
+    first_name: '',
+    last_name: '',
     gender: '',
   };
 
   // select row
-  selectedRow!: User | null;
+  selectedRow!: Users | null;
 
   constructor(private _us: AdminUserService, public dialog: MatDialog) {}
   ngOnInit(): void {
@@ -61,6 +62,14 @@ export class ContactComponent implements OnInit, AfterViewInit {
       this.filterValues.number = number;
       this.dataSource.filter = JSON.stringify(this.filterValues);
     });
+    this.firstNameFilter.valueChanges.subscribe((first_name) => {
+      this.filterValues.first_name = first_name;
+      this.dataSource.filter = JSON.stringify(this.filterValues);
+    });
+    this.lastNameFilter.valueChanges.subscribe((last_name) => {
+      this.filterValues.last_name = last_name;
+      this.dataSource.filter = JSON.stringify(this.filterValues);
+    });
     this.genderFilter.valueChanges.subscribe((gender) => {
       this.filterValues.gender = gender;
       this.dataSource.filter = JSON.stringify(this.filterValues);
@@ -70,7 +79,9 @@ export class ContactComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {}
 
   cargarUsuarios() {
-    this._us.getAdminUsers().subscribe((data: User[]) => {
+    this._us.getAdminUsers().subscribe((data: Users[]) => {
+      //console.log(data);
+
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.filterPredicate = this.createFilter();
       this.dataSource.paginator = this.paginator;
@@ -85,6 +96,8 @@ export class ContactComponent implements OnInit, AfterViewInit {
         data.id.toString().toLowerCase().indexOf(searchTerms.id) !== -1 &&
         data.number.toString().toLowerCase().indexOf(searchTerms.number) !==
           -1 &&
+        data.first_name.toLowerCase().indexOf(searchTerms.first_name) !== -1 &&
+        data.last_name.toLowerCase().indexOf(searchTerms.last_name) !== -1 &&
         data.gender.toLowerCase().indexOf(searchTerms.gender) !== -1
       );
     };
@@ -94,6 +107,8 @@ export class ContactComponent implements OnInit, AfterViewInit {
   limpiarFiltro() {
     this.idFilter.setValue('');
     this.numberFilter.setValue('');
+    this.firstNameFilter.setValue('');
+    this.lastNameFilter.setValue('');
     this.genderFilter.setValue('');
 
     // deseleccionar row
@@ -104,39 +119,70 @@ export class ContactComponent implements OnInit, AfterViewInit {
     //console.log(row);
   }
 
-  myFunction(row: User) {
+  myFunction(row: Users) {
     this.selectedRow = row;
     console.log('doble click');
-    alert(`id: ${row.id} - nombre: ${row.firstName} ${row.lastName}`);
+    alert(`id: ${row.id} - nombre: ${row.first_name} ${row.last_name}`);
   }
 
   abrirDialogo() {
+    const nUser: Users = {
+      number: '',
+      first_name: '',
+      last_name: '',
+      gender: '',
+      email: '',
+      password: '',
+      rol: '',
+      permisos: '',
+    };
     const dialogo1 = this.dialog.open(CreateUserComponent, {
-      data: new User(0, 0, '', '', '', '', '', ''),
+      // valores por defecto al abrir formulario
+      data: nUser,
     });
 
     dialogo1.afterClosed().subscribe((user) => {
       if (user != undefined) {
-        this.agregar(user);
+        this.agregarUser(user);
         //console.log(user);
       }
     });
   }
 
-  agregar(user: User) {
-    this.dataSource.data.push(
-      new User(
-        user.id,
-        user.number,
-        user.firstName,
-        user.lastName,
-        user.gender,
-        user.email,
-        user.rol,
-        user.permisos
-      )
-    );
+  // agregar user a datasource
+  // agregarUser(user: User) {
+  //   this.dataSource.data.push(
+  //     new User(
+  //       user.id,
+  //       user.number,
+  //       user.firstName,
+  //       user.lastName,
+  //       user.gender,
+  //       user.email,
+  //       user.rol,
+  //       user.permisos
+  //     )
+  //   );
 
-    this.dataSource.data = this.dataSource.data.slice();
+  //   this.dataSource.data = this.dataSource.data.slice();
+  // }
+
+  agregarUser(user: Users) {
+    // se puede eliminar datos para que se acople a lo que recibe el API
+
+    delete user.id;
+
+    console.log(user);
+
+    this._us.agregarUser(user).subscribe(
+      (res) => {
+        console.log(res);
+        //this.router.navigate(['/admin/contact']);
+        this.cargarUsuarios();
+
+        this.dataSource.data = this.dataSource.data.slice();
+      },
+      (err) => console.error(err)
+    );
   }
 }

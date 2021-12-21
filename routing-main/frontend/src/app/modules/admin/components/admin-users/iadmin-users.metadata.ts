@@ -4,12 +4,13 @@ export interface IAdminUsers {
 }
 
 export interface Users {
-  id: number;
-  number: number;
-  firstName: string;
-  lastName: string;
+  id?: number;
+  number: number | string;
+  first_name: string;
+  last_name: string;
   gender: string;
   email: string;
+  password: string;
   rol: string;
   permisos: string;
 }

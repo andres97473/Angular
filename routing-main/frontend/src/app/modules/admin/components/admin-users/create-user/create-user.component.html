@@ -13,15 +13,6 @@
       <mat-form-field>
         <input
           matInput
-          [(ngModel)]="data.id"
-          type="number"
-          placeholder="Ingrese id"
-        />
-      </mat-form-field>
-
-      <mat-form-field>
-        <input
-          matInput
           [(ngModel)]="data.number"
           type="number"
           placeholder="Ingrese number"
@@ -31,7 +22,7 @@
       <mat-form-field>
         <input
           matInput
-          [(ngModel)]="data.firstName"
+          [(ngModel)]="data.first_name"
           type="text"
           placeholder="Ingrese nombre"
         />
@@ -40,7 +31,7 @@
       <mat-form-field>
         <input
           matInput
-          [(ngModel)]="data.lastName"
+          [(ngModel)]="data.last_name"
           type="text"
           placeholder="Ingrese Apellido"
         />
@@ -61,6 +52,15 @@
           [(ngModel)]="data.email"
           type="text"
           placeholder="Ingrese email"
+        />
+      </mat-form-field>
+
+      <mat-form-field>
+        <input
+          matInput
+          [(ngModel)]="data.password"
+          type="text"
+          placeholder="Ingrese password"
         />
       </mat-form-field>
 

@@ -3,7 +3,7 @@ const pool = require("../../config/database");
 module.exports = {
   create: (data, callBack) => {
     pool.query(
-      `insert into registration(number, firstName, lastName, gender, email, password, rol, permisos) 
+      `insert into registration(number, first_name, last_name, gender, email, password, rol, permisos) 
                 values(?,?,?,?,?,?,?,?)`,
       [
         data.number,
@@ -37,7 +37,7 @@ module.exports = {
   },
   getUserByUserId: (id, callBack) => {
     pool.query(
-      `select id,number,firstName,lastName,gender,email,rol,permisos from registration where id = ?`,
+      `select id,number,first_name,last_name,gender,email,rol,permisos from registration where id = ?`,
       [id],
       (error, results, fields) => {
         if (error) {
@@ -49,7 +49,7 @@ module.exports = {
   },
   getUsers: (callBack) => {
     pool.query(
-      `select id,number,firstName,lastName,gender,email,rol,permisos from registration`,
+      `select id,number,first_name,last_name,gender,email,rol,permisos from registration`,
       [],
       (error, results, fields) => {
         if (error) {
@@ -61,7 +61,7 @@ module.exports = {
   },
   updateUser: (data, callBack) => {
     pool.query(
-      `update registration set firstName=?, lastName=?,
+      `update registration set first_name=?, last_name=?,
        gender=?, email=?, password=?, number=? , rol=? , permisos=?
        where id = ?`,
       [
