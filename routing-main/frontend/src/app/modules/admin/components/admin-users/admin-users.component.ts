@@ -175,7 +175,7 @@ export class AdminUsersComponent implements OnInit {
 
     this._us.agregarUser(user).subscribe(
       (res) => {
-        console.log(res);
+        //console.log(res);
         //this.router.navigate(['/admin/contact']);
         this.cargarUsuarios();
 

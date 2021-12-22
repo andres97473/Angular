@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
               success: result.success,
               email: result.email,
             };
-            console.log(this._auth.loginData);
+            //console.log(this._auth.loginData);
           }
         },
         (err: Error) => {
