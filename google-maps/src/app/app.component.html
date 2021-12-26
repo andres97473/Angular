@@ -1,0 +1,15 @@
+<button (click)="changeRadius()">Change radius</button>
+<button (click)="changeOpacity()">Change opacity</button>
+
+<google-map
+  height="600px"
+  width="100%"
+  [center]="center"
+  [zoom]="zoom"
+  [options]="options"
+>
+  <map-heatmap-layer
+    [data]="heatmapData"
+    [options]="heatmapOptions"
+  ></map-heatmap-layer>
+</google-map>
