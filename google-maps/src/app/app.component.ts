@@ -10,7 +10,7 @@ import { GeoService } from './services/geo.service';
 export class AppComponent implements OnInit {
   title = 'google-maps';
   center!: Points;
-  zoom = 13;
+  zoom!: number;
   isChangeRadius = false;
   isChangeOpacity = false;
   isChangeGradient = false;
@@ -49,11 +49,11 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.center = this.getCenter();
+    this.zoom = 13;
     this.heatmapData = this._geo.points;
     this.radius = 10;
     this.opacity = 0.7;
     this.initMap();
-    this.getCenter();
   }
 
   getCenter(): Points {
@@ -120,5 +120,9 @@ export class AppComponent implements OnInit {
   changeGradient() {
     this.isChangeGradient = !this.isChangeGradient;
     this.initMap();
+  }
+
+  changeToCenter() {
+    this.center = this.getCenter();
   }
 }
