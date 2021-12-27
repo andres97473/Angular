@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
+import { Points } from '../interfaces/points';
 
 @Injectable({
   providedIn: 'root',
 })
 export class GeoService {
-  poinst = [
+  points: Points[] = [
     { lat: 0.779367, lng: -77.584633 },
     { lat: 0.778767, lng: -77.583517 },
     { lat: 0.779583, lng: -77.583383 },
