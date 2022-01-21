@@ -1,0 +1,11 @@
+.diag_crear {
+  width: 800px;
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-flex {
+  height: 40px !important;
+}
+
+::ng-deep .mat-form-field-infix {
+  padding-top: 1px !important;
+}

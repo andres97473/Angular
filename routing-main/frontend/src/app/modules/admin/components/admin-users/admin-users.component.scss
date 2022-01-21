@@ -9,6 +9,18 @@ $secondary: #f4aa0b;
   margin-bottom: -10px;
 }
 
+.btn-filtro {
+  vertical-align: -webkit-baseline-middle;
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-flex {
+  height: 35px !important;
+}
+
+::ng-deep .mat-form-field-infix {
+  padding-top: 1px !important;
+}
+
 td,
 th {
   width: 5%;
