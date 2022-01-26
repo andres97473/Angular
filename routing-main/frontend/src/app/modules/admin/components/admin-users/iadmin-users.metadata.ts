@@ -12,7 +12,7 @@ export interface Users {
   email: string;
   password: string;
   rol: string;
-  permisos: string;
+  permisos: any;
 }
 
 export interface ModuloPermisos {

@@ -77,16 +77,16 @@ export class ContactComponent {
   }
 
   guardarPermisos() {
-    //console.log(this.permisos);
-    for (const modulo of this.permisos) {
-      //console.log(modulo.modulo);
-      for (const permisos of modulo.permisos) {
-        if (permisos.select) {
-          this.permisosPlano.push(permisos.id);
-        }
-      }
-    }
-    console.log(this.permisosPlano);
-    this.permisosPlano = [];
+    console.log(this.permisos);
+    // for (const modulo of this.permisos) {
+    //   //console.log(modulo.modulo);
+    //   for (const permisos of modulo.permisos) {
+    //     if (permisos.select) {
+    //       this.permisosPlano.push(permisos.id);
+    //     }
+    //   }
+    // }
+    // console.log(this.permisosPlano);
+    // this.permisosPlano = [];
   }
 }

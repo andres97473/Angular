@@ -7,6 +7,7 @@ import { AdminUserService } from '../admin-users/admin-user.service';
 import { Users } from '../admin-users/iadmin-users.metadata';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateUserComponent } from '../admin-users/create-user/create-user.component';
+import { ModuloPermisos } from './iadmin-users.metadata';
 
 @Component({
   selector: 'app-admin-users',
@@ -26,7 +27,6 @@ export class AdminUsersComponent implements OnInit {
     'gender',
     'email',
     'rol',
-    'permisos',
   ];
   dataSource!: MatTableDataSource<Users>;
 
@@ -120,8 +120,10 @@ export class AdminUsersComponent implements OnInit {
 
   myFunction(row: Users) {
     this.selectedRow = row;
-    console.log('doble click');
     alert(`id: ${row.id} - nombre: ${row.first_name} ${row.last_name}`);
+    //console.log(row.permisos);
+    const nPermisos = row.permisos;
+    console.log(nPermisos);
   }
 
   abrirDialogo() {

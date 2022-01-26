@@ -1,109 +1,138 @@
-<!-- As a heading -->
-<nav class="navbar navbar-dark nav_backgroud">
-  <span class="navbar-brand mb-0 h1">Crear Usuario</span>
-</nav>
 <div class="diag_crear">
-  <div mat-dialog-content>
-    <div
-      style="
-        display: flex;
-        flex-direction: column;
-        margin: 1rem auto;
+  <!-- As a heading -->
+  <nav class="navbar navbar-dark nav_backgroud">
+    <span class="navbar-brand mb-0 h1">Crear Usuario</span>
+  </nav>
 
-        padding: 1rem;
-      "
-    >
-      <mat-grid-list
-        class="container_grid"
-        cols="3"
-        rowHeight="60px"
-        [gutterSize]="'15px'"
-      >
-        <mat-grid-tile>
-          <mat-form-field appearance="outline">
-            <input
-              matInput
-              [(ngModel)]="data.number"
-              type="number"
-              placeholder="Ingrese number"
-              autocomplete="off"
-            />
-          </mat-form-field>
-        </mat-grid-tile>
-        <mat-grid-tile>
-          <mat-form-field appearance="outline">
-            <input
-              matInput
-              [(ngModel)]="data.first_name"
-              type="text"
-              placeholder="Ingrese nombre"
-              autocomplete="off"
-            />
-          </mat-form-field>
-        </mat-grid-tile>
-        <mat-grid-tile
-          ><mat-form-field appearance="outline">
-            <input
-              matInput
-              [(ngModel)]="data.last_name"
-              type="text"
-              placeholder="Ingrese Apellido"
-              autocomplete="off"
-            /> </mat-form-field
-        ></mat-grid-tile>
-        <mat-grid-tile
-          ><mat-form-field appearance="outline">
-            <input
-              matInput
-              [(ngModel)]="data.gender"
-              type="text"
-              placeholder="Ingrese genero"
-              autocomplete="off"
-            /> </mat-form-field
-        ></mat-grid-tile>
-        <mat-grid-tile
-          ><mat-form-field appearance="outline">
-            <input
-              matInput
-              [(ngModel)]="data.email"
-              type="text"
-              placeholder="Ingrese email"
-              autocomplete="off"
-            /> </mat-form-field
-        ></mat-grid-tile>
-        <mat-grid-tile
-          ><mat-form-field appearance="outline">
-            <input
-              matInput
-              [(ngModel)]="data.password"
-              type="text"
-              placeholder="Ingrese password"
-              autocomplete="off"
-            /> </mat-form-field
-        ></mat-grid-tile>
-        <mat-grid-tile
-          ><mat-form-field appearance="outline">
-            <input
-              matInput
-              [(ngModel)]="data.rol"
-              type="text"
-              placeholder="Ingrese rol"
-              autocomplete="off"
-            /> </mat-form-field
-        ></mat-grid-tile>
-        <mat-grid-tile
-          ><mat-form-field appearance="outline">
-            <input
-              matInput
-              [(ngModel)]="data.permisos"
-              type="text"
-              placeholder="Ingrese permisos"
-              autocomplete="off"
-            /> </mat-form-field
-        ></mat-grid-tile>
-      </mat-grid-list>
-    </div>
-  </div>
+  <!-- tabs 2 -->
+  <mat-tab-group>
+    <mat-tab>
+      <ng-template mat-tab-label>Datos generales</ng-template>
+
+      <div mat-dialog-content>
+        <div
+          style="
+            display: flex;
+            flex-direction: column;
+            margin: 1rem auto;
+
+            padding: 1rem;
+          "
+        >
+          <mat-grid-list
+            class="container_grid"
+            cols="3"
+            rowHeight="60px"
+            [gutterSize]="'10px'"
+          >
+            <mat-grid-tile>
+              <mat-form-field appearance="outline">
+                <input
+                  matInput
+                  [(ngModel)]="data.number"
+                  type="number"
+                  placeholder="Ingrese number"
+                  autocomplete="off"
+                />
+              </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <mat-form-field appearance="outline">
+                <input
+                  matInput
+                  [(ngModel)]="data.first_name"
+                  type="text"
+                  placeholder="Ingrese nombre"
+                  autocomplete="off"
+                />
+              </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile
+              ><mat-form-field appearance="outline">
+                <input
+                  matInput
+                  [(ngModel)]="data.last_name"
+                  type="text"
+                  placeholder="Ingrese Apellido"
+                  autocomplete="off"
+                /> </mat-form-field
+            ></mat-grid-tile>
+            <mat-grid-tile
+              ><mat-form-field appearance="outline">
+                <input
+                  matInput
+                  [(ngModel)]="data.gender"
+                  type="text"
+                  placeholder="Ingrese genero"
+                  autocomplete="off"
+                /> </mat-form-field
+            ></mat-grid-tile>
+            <mat-grid-tile
+              ><mat-form-field appearance="outline">
+                <input
+                  matInput
+                  [(ngModel)]="data.email"
+                  type="text"
+                  placeholder="Ingrese email"
+                  autocomplete="off"
+                /> </mat-form-field
+            ></mat-grid-tile>
+            <mat-grid-tile
+              ><mat-form-field appearance="outline">
+                <input
+                  matInput
+                  [(ngModel)]="data.password"
+                  type="text"
+                  placeholder="Ingrese password"
+                  autocomplete="off"
+                /> </mat-form-field
+            ></mat-grid-tile>
+            <mat-grid-tile
+              ><mat-form-field appearance="outline">
+                <input
+                  matInput
+                  [(ngModel)]="data.rol"
+                  type="text"
+                  placeholder="Ingrese rol"
+                  autocomplete="off"
+                /> </mat-form-field
+            ></mat-grid-tile>
+          </mat-grid-list>
+        </div>
+      </div>
+    </mat-tab>
+    <mat-tab>
+      <ng-template mat-tab-label>Permisos</ng-template>
+      <mat-accordion *ngFor="let modulo of permisos; let i = index">
+        <mat-expansion-panel class="modulos">
+          <mat-expansion-panel-header>
+            <mat-panel-title> {{ modulo.modulo }}</mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="container">
+            <table class="table">
+              <tbody>
+                <tr *ngFor="let permiso of modulo.permisos">
+                  <th scope="row">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      [value]="permiso.id"
+                      [checked]="permiso.select"
+                      (change)="onChangePermisos($event, i)"
+                    />
+                  </th>
+                  <td>{{ permiso.name }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </mat-tab>
+  </mat-tab-group>
+  <!-- tabs 2 -->
+</div>
+<div class="diag_crear_buttons">
   <mat-divider></mat-divider>
   <div mat-dialog-actions>
     <button mat-button (click)="cancelar()">Cancelar</button>

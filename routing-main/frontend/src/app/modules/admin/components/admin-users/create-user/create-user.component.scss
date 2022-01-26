@@ -1,11 +1,20 @@
 $primary: rgb(44, 65, 179);
 
 .diag_crear {
+  height: 500px;
+}
+
+.diag_crear_buttons {
   width: 800px;
 }
 
 .nav_backgroud {
   background-color: $primary;
+}
+
+.modulos {
+  width: 95%;
+  margin-left: 5px;
 }
 
 ::ng-deep .mat-form-field-appearance-outline .mat-form-field-flex {
