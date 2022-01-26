@@ -1,5 +1,11 @@
+$primary: rgb(44, 65, 179);
+
 .diag_crear {
   width: 800px;
+}
+
+.nav_backgroud {
+  background-color: $primary;
 }
 
 ::ng-deep .mat-form-field-appearance-outline .mat-form-field-flex {

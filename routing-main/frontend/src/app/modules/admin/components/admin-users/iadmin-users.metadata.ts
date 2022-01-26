@@ -14,3 +14,14 @@ export interface Users {
   rol: string;
   permisos: string;
 }
+
+export interface ModuloPermisos {
+  modulo: string;
+  permisos: Permiso[];
+}
+
+export interface Permiso {
+  id: number;
+  select: boolean;
+  name: string;
+}

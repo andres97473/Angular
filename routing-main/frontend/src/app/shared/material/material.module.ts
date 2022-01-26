@@ -14,6 +14,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatDividerModule } from '@angular/material/divider';
 
 @NgModule({
   declarations: [],
@@ -33,6 +34,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
     MatToolbarModule,
     MatDialogModule,
     MatGridListModule,
+    MatDividerModule,
   ],
   exports: [
     MatSliderModule,
@@ -49,6 +51,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
     MatToolbarModule,
     MatDialogModule,
     MatGridListModule,
+    MatDividerModule,
   ],
 })
 export class MaterialModule {}

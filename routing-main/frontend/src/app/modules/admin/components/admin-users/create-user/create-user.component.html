@@ -1,5 +1,8 @@
+<!-- As a heading -->
+<nav class="navbar navbar-dark nav_backgroud">
+  <span class="navbar-brand mb-0 h1">Crear Usuario</span>
+</nav>
 <div class="diag_crear">
-  <h1 mat-dialog-title>Crear Usuario</h1>
   <div mat-dialog-content>
     <div
       style="
@@ -101,6 +104,7 @@
       </mat-grid-list>
     </div>
   </div>
+  <mat-divider></mat-divider>
   <div mat-dialog-actions>
     <button mat-button (click)="cancelar()">Cancelar</button>
     <button mat-button [mat-dialog-close]="data" cdkFocusInitial>
