@@ -47,24 +47,16 @@ export class AdminUserService {
     modulo: string,
     permiso: string
   ): boolean {
-    let acceso = false;
-    //console.log('funcion buscar', moduloPermisos);
-
-    const nModulo = moduloPermisos.find((e) => (e.modulo = modulo));
-    //console.log(nModulo);
-
-    const nModuloPermisos: Permiso[] = nModulo?.permisos as Permiso[];
-    //console.log(nModuloPermisos);
-
-    const nModuloPermisosConsultar = nModuloPermisos.find(
-      (e: Permiso) => (e.name = permiso)
+    const nModulo: ModuloPermisos[] = moduloPermisos.filter(
+      (m) => m.modulo == modulo
     );
 
-    //console.log(nModuloPermisosConsultar?.select);
-    if (nModuloPermisosConsultar?.select) {
-      acceso = true;
-    }
-    console.log(acceso);
-    return acceso;
+    const nPermisos: Permiso[] = nModulo[0].permisos.filter(
+      (p: Permiso) => p.name == permiso
+    );
+
+    //console.log(nPermisos[0].select);
+
+    return nPermisos[0].select;
   }
 }

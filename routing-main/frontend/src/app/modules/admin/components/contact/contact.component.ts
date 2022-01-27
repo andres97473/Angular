@@ -31,7 +31,7 @@ export class ContactComponent {
     {
       modulo: 'contact',
       permisos: [
-        { id: 6, select: false, name: 'Consultar' },
+        { id: 6, select: true, name: 'Consultar' },
         { id: 7, select: false, name: 'Adicionar' },
         { id: 8, select: false, name: 'Editar' },
         { id: 9, select: false, name: 'Eliminar' },
@@ -39,6 +39,27 @@ export class ContactComponent {
       ],
     },
   ];
+
+  constructor() {
+    this.buscarPermisos(this.permisos, 'admin-user', 'Consultar');
+  }
+
+  buscarPermisos(
+    moduloPermisos: ModuloPermisos[],
+    modulo: string,
+    permiso: string
+  ): boolean {
+    const nModulo: ModuloPermisos[] = moduloPermisos.filter(
+      (m) => m.modulo == modulo
+    );
+
+    const nPermisos: Permiso[] = nModulo[0].permisos.filter(
+      (p: Permiso) => p.name == permiso
+    );
+
+    console.log(nPermisos[0].select);
+    return nPermisos[0].select;
+  }
 
   onChangeFood($event: any) {
     const id = $event.target.value;

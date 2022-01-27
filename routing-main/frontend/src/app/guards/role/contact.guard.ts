@@ -6,23 +6,23 @@ import {
   UrlTree,
 } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AuthService } from '../../services/auth/auth.service';
+import { AdminUserService } from 'src/app/modules/admin/components/admin-users/admin-user.service';
+import { ModuloPermisos } from 'src/app/modules/admin/components/admin-users/iadmin-users.metadata';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import Swal from 'sweetalert2';
-import { AdminUserService } from '../../modules/admin/components/admin-users/admin-user.service';
-import { ModuloPermisos } from '../../modules/admin/components/admin-users/iadmin-users.metadata';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AdminUserGuard implements CanActivate {
+export class ContactGuard implements CanActivate {
   constructor(private auth: AuthService, private _us: AdminUserService) {}
 
-  verAdminConsultar(): boolean {
+  verContactConsultar(): boolean {
     const authPermisos = this.auth.getPermisos();
     if (authPermisos) {
       const nPermisos: ModuloPermisos[] = JSON.parse(authPermisos);
       //console.log(nPermisos);
-      if (this._us.buscarPermisos(nPermisos, 'admin-user', 'Consultar')) {
+      if (this._us.buscarPermisos(nPermisos, 'contact', 'Consultar')) {
         return true;
       }
     }
@@ -32,8 +32,8 @@ export class AdminUserGuard implements CanActivate {
   canActivate() {
     let role = this.auth.getRol();
 
-    if (role == 'administrador' || this.verAdminConsultar()) {
-      //console.log('consultar ', this.verAdminConsultar());
+    if (role == 'administrador' || this.verContactConsultar()) {
+      console.log('consultar ', this.verContactConsultar());
       return true;
     }
     //alert("You don't have admin rights");

@@ -59,7 +59,7 @@ export class CreateUserComponent implements OnInit {
       email: [''],
       password: [''],
       rol: [''],
-      permisos: [''],
+      permisos: [''], //dato por defecto
     });
   }
 

@@ -8,6 +8,7 @@ import { ContactComponent } from './components/contact/contact.component';
 import { AdminUsersComponent } from './components/admin-users/admin-users.component';
 import { AdminUserGuard } from '../../guards/role/admin-user.guard';
 import { CreateUserComponent } from './components/admin-users/create-user/create-user.component';
+import { ContactGuard } from '../../guards/role/contact.guard';
 
 const routes: Routes = [
   {
@@ -17,7 +18,11 @@ const routes: Routes = [
       { path: 'home', component: HomeComponent },
       { path: 'about', component: AboutComponent },
       { path: 'services', component: ServicesComponent },
-      { path: 'contact', component: ContactComponent },
+      {
+        path: 'contact',
+        component: ContactComponent,
+        canActivate: [ContactGuard],
+      },
       {
         path: 'admin-users',
         component: AdminUsersComponent,
