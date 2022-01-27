@@ -4,9 +4,11 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { AdminUserService } from '../admin-users/admin-user.service';
-import { Users } from '../admin-users/iadmin-users.metadata';
+import { Permiso, Users } from '../admin-users/iadmin-users.metadata';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateUserComponent } from '../admin-users/create-user/create-user.component';
+
+import { find } from 'lodash';
 import { ModuloPermisos } from './iadmin-users.metadata';
 
 @Component({
@@ -119,11 +121,15 @@ export class AdminUsersComponent implements OnInit {
   }
 
   myFunction(row: Users) {
+    const nPermisos: ModuloPermisos[] = JSON.parse(row.permisos);
+    //console.log(nPermisos);
+
+    this._us.buscarPermisos(nPermisos, 'admin-user', 'Consultar');
+
+    //console.log(nPermisos[0].permisos[0].name);
+    //console.log(row.permisos);
     this.selectedRow = row;
     alert(`id: ${row.id} - nombre: ${row.first_name} ${row.last_name}`);
-    //console.log(row.permisos);
-    const nPermisos = row.permisos;
-    console.log(nPermisos);
   }
 
   abrirDialogo() {

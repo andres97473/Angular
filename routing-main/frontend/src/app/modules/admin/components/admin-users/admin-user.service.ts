@@ -1,6 +1,11 @@
 import { HttpClient, HttpHeaders, HttpInterceptor } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Users, IAdminUsers } from './iadmin-users.metadata';
+import {
+  Users,
+  IAdminUsers,
+  ModuloPermisos,
+  Permiso,
+} from './iadmin-users.metadata';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AuthService } from '../../../../services/auth/auth.service';
@@ -35,5 +40,31 @@ export class AdminUserService {
 
   agregarUser(user: Users) {
     return this.http.post(`http://localhost:4000/api/users`, user);
+  }
+
+  buscarPermisos(
+    moduloPermisos: ModuloPermisos[],
+    modulo: string,
+    permiso: string
+  ): boolean {
+    let acceso = false;
+    //console.log('funcion buscar', moduloPermisos);
+
+    const nModulo = moduloPermisos.find((e) => (e.modulo = modulo));
+    //console.log(nModulo);
+
+    const nModuloPermisos: Permiso[] = nModulo?.permisos as Permiso[];
+    //console.log(nModuloPermisos);
+
+    const nModuloPermisosConsultar = nModuloPermisos.find(
+      (e: Permiso) => (e.name = permiso)
+    );
+
+    //console.log(nModuloPermisosConsultar?.select);
+    if (nModuloPermisosConsultar?.select) {
+      acceso = true;
+    }
+    console.log(acceso);
+    return acceso;
   }
 }
