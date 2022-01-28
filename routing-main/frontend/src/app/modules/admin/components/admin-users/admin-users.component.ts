@@ -117,7 +117,7 @@ export class AdminUsersComponent implements OnInit {
   }
 
   selectRow(row: any) {
-    //console.log(row);
+    console.log(row);
   }
 
   myFunction(row: Users) {
