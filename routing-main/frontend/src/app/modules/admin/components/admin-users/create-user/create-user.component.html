@@ -27,73 +27,73 @@
           >
             <mat-grid-tile>
               <mat-form-field appearance="outline">
+                <mat-label>identificacion</mat-label>
                 <input
                   matInput
                   [(ngModel)]="data.number"
                   type="number"
-                  placeholder="Ingrese number"
                   autocomplete="off"
                 />
               </mat-form-field>
             </mat-grid-tile>
             <mat-grid-tile>
               <mat-form-field appearance="outline">
+                <mat-label>Nombre</mat-label>
                 <input
                   matInput
                   [(ngModel)]="data.first_name"
                   type="text"
-                  placeholder="Ingrese nombre"
                   autocomplete="off"
                 />
               </mat-form-field>
             </mat-grid-tile>
             <mat-grid-tile
               ><mat-form-field appearance="outline">
+                <mat-label>Apellido</mat-label>
                 <input
                   matInput
                   [(ngModel)]="data.last_name"
                   type="text"
-                  placeholder="Ingrese Apellido"
                   autocomplete="off"
                 /> </mat-form-field
             ></mat-grid-tile>
             <mat-grid-tile
               ><mat-form-field appearance="outline">
+                <mat-label>Genero</mat-label>
                 <input
                   matInput
                   [(ngModel)]="data.gender"
                   type="text"
-                  placeholder="Ingrese genero"
                   autocomplete="off"
                 /> </mat-form-field
             ></mat-grid-tile>
             <mat-grid-tile
               ><mat-form-field appearance="outline">
+                <mat-label>Email</mat-label>
                 <input
                   matInput
                   [(ngModel)]="data.email"
                   type="text"
-                  placeholder="Ingrese email"
                   autocomplete="off"
                 /> </mat-form-field
             ></mat-grid-tile>
             <mat-grid-tile
               ><mat-form-field appearance="outline">
+                <mat-label>Contraseña</mat-label>
                 <input
                   matInput
                   [(ngModel)]="data.password"
                   type="text"
-                  placeholder="Ingrese password"
                   autocomplete="off"
                 /> </mat-form-field
             ></mat-grid-tile>
             <mat-grid-tile
               ><mat-form-field appearance="outline">
+                <mat-label>Rol</mat-label>
                 <input
                   matInput
                   [(ngModel)]="data.rol"
                   type="text"
-                  placeholder="Ingrese rol"
                   autocomplete="off"
                 /> </mat-form-field
             ></mat-grid-tile>
@@ -135,8 +135,15 @@
 <div class="diag_crear_buttons">
   <mat-divider></mat-divider>
   <div mat-dialog-actions>
-    <button mat-button (click)="cancelar()">Cancelar</button>
-    <button mat-button [mat-dialog-close]="data" cdkFocusInitial>
+    <button mat-button color="primary" mat-raised-button (click)="cancelar()">
+      Cancelar
+    </button>
+    <button
+      mat-button
+      color="primary"
+      mat-raised-button
+      [mat-dialog-close]="data"
+    >
       Confirmar
     </button>
   </div>

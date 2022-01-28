@@ -49,8 +49,9 @@ th {
 }
 
 .example-container {
-  height: 400px;
+  height: 340px;
   overflow: auto;
+  box-shadow: none;
 }
 
 ::ng-deep .mat-sort-header-arrow {
