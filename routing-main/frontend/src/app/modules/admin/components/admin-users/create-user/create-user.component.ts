@@ -27,7 +27,7 @@ export class CreateUserComponent implements OnInit {
     {
       modulo: 'admin-user',
       permisos: [
-        { id: 1, select: true, name: 'Consultar' },
+        { id: 1, select: false, name: 'Consultar' },
         { id: 2, select: false, name: 'Adicionar' },
         { id: 3, select: false, name: 'Editar' },
         { id: 4, select: false, name: 'Eliminar' },
@@ -37,7 +37,7 @@ export class CreateUserComponent implements OnInit {
     {
       modulo: 'contact',
       permisos: [
-        { id: 6, select: false, name: 'Consultar' },
+        { id: 6, select: true, name: 'Consultar' },
         { id: 7, select: false, name: 'Adicionar' },
         { id: 8, select: false, name: 'Editar' },
         { id: 9, select: false, name: 'Eliminar' },
@@ -61,6 +61,10 @@ export class CreateUserComponent implements OnInit {
       rol: [''],
       permisos: [''], //dato por defecto
     });
+
+    // iniciar permisos con valores por defecto
+    this.data.permisos = JSON.stringify(this.permisos);
+    //console.log(this.data.permisos);
   }
 
   onChangePermisos($event: any, i: number) {
