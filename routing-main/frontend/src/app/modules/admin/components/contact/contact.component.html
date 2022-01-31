@@ -20,36 +20,30 @@
 </div>
 <hr />
 
-<mat-accordion *ngFor="let modulo of permisos; let i = index">
-  <mat-expansion-panel>
-    <mat-expansion-panel-header>
-      <mat-panel-title> {{ modulo.modulo }}</mat-panel-title>
-    </mat-expansion-panel-header>
-    <div class="container">
-      <table class="table">
-        <tbody>
-          <tr *ngFor="let permiso of modulo.permisos">
-            <th scope="row">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                [value]="permiso.id"
-                [checked]="permiso.select"
-                (change)="onChangePermisos($event, i)"
-              />
-            </th>
-            <td>{{ permiso.name }}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </mat-expansion-panel>
-</mat-accordion>
+<section>
+  <h4>Basic mat-select</h4>
+  <mat-form-field appearance="fill">
+    <mat-label>Favorite food</mat-label>
+    <mat-select>
+      <mat-option *ngFor="let food of foods" [value]="food.value">
+        {{ food.viewValue }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</section>
 
-<section class="mt-5 mb-5">
-  <div class="example-button-row">
-    <button mat-raised-button color="primary" (click)="guardarPermisos()">
-      Guardar
-    </button>
-  </div>
+<section>
+  <h4>Sexo</h4>
+  <mat-form-field appearance="fill">
+    <mat-label>Seleccione sexo</mat-label>
+    <mat-select>
+      <mat-option
+        *ngFor="let sexo of sexos"
+        [value]="sexo.value"
+        (click)="changeSexo(sexo.value)"
+      >
+        {{ sexo.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 </section>

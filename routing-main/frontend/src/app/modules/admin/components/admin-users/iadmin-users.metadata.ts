@@ -25,3 +25,8 @@ export interface Permiso {
   select: boolean;
   name: string;
 }
+
+export interface sexo {
+  value: string;
+  name: string;
+}

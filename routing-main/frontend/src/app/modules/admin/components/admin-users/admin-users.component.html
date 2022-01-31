@@ -45,8 +45,19 @@
         <mat-form-field appearance="outline">
           <mat-select [formControl]="genderFilter">
             <mat-option value="">Sexo</mat-option>
-            <mat-option value="m">Male</mat-option>
-            <mat-option value="f">Female</mat-option>
+            <mat-option value="m">MASCULINO</mat-option>
+            <mat-option value="f">FEMENINO</mat-option>
+            <mat-option value="o">OTRO</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!-- gender 2 -->
+        <mat-form-field appearance="outline">
+          <mat-select [formControl]="genderFilter">
+            <mat-option value="">Sexo</mat-option>
+            <mat-option *ngFor="let sexo of sexos" [value]="sexo.value">{{
+              sexo.name
+            }}</mat-option>
           </mat-select>
         </mat-form-field>
 

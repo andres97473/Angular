@@ -48,11 +48,16 @@ export class AdminUsersComponent implements OnInit {
     gender: '',
   };
 
+  sexos: any = [];
+
   // select row
   selectedRow!: Users | null;
 
   constructor(private _us: AdminUserService, public dialog: MatDialog) {}
+
   ngOnInit(): void {
+    //REVISAR
+    this.sexos = this._us.getSexo();
     this.cargarUsuarios();
 
     this.idFilter.valueChanges.subscribe((id) => {
@@ -71,7 +76,7 @@ export class AdminUsersComponent implements OnInit {
       this.filterValues.last_name = last_name;
       this.dataSource.filter = JSON.stringify(this.filterValues);
     });
-    this.genderFilter.valueChanges.subscribe((gender) => {
+    this.genderFilter.valueChanges.subscribe((gender: string) => {
       this.filterValues.gender = gender;
       this.dataSource.filter = JSON.stringify(this.filterValues);
     });

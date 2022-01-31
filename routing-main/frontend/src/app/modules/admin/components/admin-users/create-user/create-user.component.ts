@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ModuloPermisos, Users } from '../iadmin-users.metadata';
+import { ModuloPermisos, sexo, Users } from '../iadmin-users.metadata';
+import { AdminUserService } from '../admin-user.service';
 
 export interface ExampleTab {
   label: string;
@@ -23,30 +24,13 @@ export class CreateUserComponent implements OnInit {
   forma: FormGroup;
 
   //permisos
-  permisos: ModuloPermisos[] = [
-    {
-      modulo: 'admin-user',
-      permisos: [
-        { id: 1, select: false, name: 'Consultar' },
-        { id: 2, select: false, name: 'Adicionar' },
-        { id: 3, select: false, name: 'Editar' },
-        { id: 4, select: false, name: 'Eliminar' },
-        { id: 5, select: false, name: 'Imprimir' },
-      ],
-    },
-    {
-      modulo: 'contact',
-      permisos: [
-        { id: 6, select: true, name: 'Consultar' },
-        { id: 7, select: false, name: 'Adicionar' },
-        { id: 8, select: false, name: 'Editar' },
-        { id: 9, select: false, name: 'Eliminar' },
-        { id: 10, select: false, name: 'Imprimir' },
-      ],
-    },
-  ];
+  permisos: ModuloPermisos[] = [];
+
+  //sexo
+  sexos: any = [];
 
   constructor(
+    private _us: AdminUserService,
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<CreateUserComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Users
@@ -61,6 +45,9 @@ export class CreateUserComponent implements OnInit {
       rol: [''],
       permisos: [''], //dato por defecto
     });
+    this.permisos = this._us.getPermisosModulo();
+
+    this.sexos = this._us.getSexo();
 
     // iniciar permisos con valores por defecto
     this.data.permisos = JSON.stringify(this.permisos);
@@ -85,6 +72,11 @@ export class CreateUserComponent implements OnInit {
 
     this.data.permisos = JSON.stringify(this.permisos);
     //console.log(this.data);
+  }
+
+  changeSexo(value: string) {
+    this.data.gender = value;
+    console.log(value);
   }
 
   ngOnInit(): void {}
