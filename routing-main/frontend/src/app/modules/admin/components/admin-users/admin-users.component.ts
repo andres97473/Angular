@@ -104,7 +104,7 @@ export class AdminUsersComponent implements OnInit {
           -1 &&
         data.first_name.toLowerCase().indexOf(searchTerms.first_name) !== -1 &&
         data.last_name.toLowerCase().indexOf(searchTerms.last_name) !== -1 &&
-        data.gender.toLowerCase().indexOf(searchTerms.gender) !== -1
+        data.gender.toUpperCase().indexOf(searchTerms.gender) !== -1
       );
     };
     return filterFunction;
