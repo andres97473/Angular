@@ -117,11 +117,11 @@ export class AdminUsersComponent implements OnInit {
     this.selectedRow = null;
   }
 
-  selectRow(row: any) {
+  selectRow(row: Users) {
     console.log(row);
   }
 
-  myFunction(row: Users) {
+  editarDobleCick(row: Users) {
     const nPermisos: ModuloPermisos[] = JSON.parse(row.permisos);
     //console.log(nPermisos);
 
@@ -133,7 +133,7 @@ export class AdminUsersComponent implements OnInit {
     alert(`id: ${row.id} - nombre: ${row.first_name} ${row.last_name}`);
   }
 
-  abrirDialogo() {
+  abrirDialogoCrear() {
     const nUser: Users = {
       number: '',
       first_name: '',
@@ -174,5 +174,21 @@ export class AdminUsersComponent implements OnInit {
       },
       (err) => console.error(err)
     );
+  }
+
+  actualizarUser(user: Users) {
+    console.log(user.id);
+    const nUser: Users = user;
+    const dialogo1 = this.dialog.open(CreateUserComponent, {
+      // valores por defecto al abrir formulario
+      data: nUser,
+    });
+
+    dialogo1.afterClosed().subscribe((user) => {
+      if (user != undefined) {
+        this.agregarUser(user);
+        //console.log(user);
+      }
+    });
   }
 }

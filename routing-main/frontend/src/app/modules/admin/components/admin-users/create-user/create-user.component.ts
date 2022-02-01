@@ -76,7 +76,7 @@ export class CreateUserComponent implements OnInit {
 
   changeSexo(value: string) {
     this.data.gender = value;
-    console.log(value);
+    //console.log(value);
   }
 
   ngOnInit(): void {}

@@ -118,7 +118,7 @@
               [class.demo-row-is-clicked]="selectedRow === row"
               (click)="selectedRow = selectedRow === row ? null : row"
               (click)="selectRow(row)"
-              (dblclick)="myFunction(row)"
+              (dblclick)="actualizarUser(row)"
             ></tr>
           </table>
         </div>
@@ -127,8 +127,19 @@
         <div class="border">
           <div class="row align-items-center">
             <div class="col sombra">
-              <button class="ml-2" mat-raised-button (click)="abrirDialogo()">
+              <button
+                class="ml-2"
+                mat-raised-button
+                (click)="abrirDialogoCrear()"
+              >
                 Agregar Usuario
+              </button>
+              <button
+                class="ml-2"
+                mat-raised-button
+                (click)="abrirDialogoCrear()"
+              >
+                Editar Usuario
               </button>
             </div>
             <div class="col">
