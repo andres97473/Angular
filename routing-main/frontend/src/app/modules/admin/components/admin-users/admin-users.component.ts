@@ -1,15 +1,13 @@
-import { AfterViewInit, Component, ViewChild, OnInit } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { AdminUserService } from '../admin-users/admin-user.service';
-import { Permiso, Users } from '../admin-users/iadmin-users.metadata';
+import { Users } from '../admin-users/iadmin-users.metadata';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateUserComponent } from '../admin-users/create-user/create-user.component';
-
-import { find } from 'lodash';
-import { ModuloPermisos } from './iadmin-users.metadata';
+import { ModuloPermisos, sexo } from './iadmin-users.metadata';
 
 @Component({
   selector: 'app-admin-users',
@@ -48,7 +46,7 @@ export class AdminUsersComponent implements OnInit {
     gender: '',
   };
 
-  sexos: any = [];
+  sexos: sexo[] = [];
 
   // select row
   selectedRow!: Users | null;
@@ -81,8 +79,6 @@ export class AdminUsersComponent implements OnInit {
       this.dataSource.filter = JSON.stringify(this.filterValues);
     });
   }
-
-  ngAfterViewInit(): void {}
 
   cargarUsuarios() {
     this._us.getAdminUsers().subscribe((data: Users[]) => {
@@ -160,24 +156,6 @@ export class AdminUsersComponent implements OnInit {
       }
     });
   }
-
-  // agregar user a datasource
-  // agregarUser(user: User) {
-  //   this.dataSource.data.push(
-  //     new User(
-  //       user.id,
-  //       user.number,
-  //       user.firstName,
-  //       user.lastName,
-  //       user.gender,
-  //       user.email,
-  //       user.rol,
-  //       user.permisos
-  //     )
-  //   );
-
-  //   this.dataSource.data = this.dataSource.data.slice();
-  // }
 
   agregarUser(user: Users) {
     // se puede eliminar datos para que se acople a lo que recibe el API

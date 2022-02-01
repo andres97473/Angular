@@ -28,6 +28,6 @@ export class ContactComponent {
   }
 
   changeSexo(value: string) {
-    console.log(value);
+    //console.log(value);
   }
 }

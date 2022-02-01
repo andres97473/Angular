@@ -33,7 +33,7 @@ export class ContactGuard implements CanActivate {
     let role = this.auth.getRol();
 
     if (role == 'administrador' || this.verContactConsultar()) {
-      console.log('consultar ', this.verContactConsultar());
+      //console.log('consultar ', this.verContactConsultar());
       return true;
     }
     //alert("You don't have admin rights");
