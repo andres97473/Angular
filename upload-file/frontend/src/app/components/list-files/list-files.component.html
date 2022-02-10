@@ -1,0 +1,12 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Files</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let file of files">
+      <a [href]="file.url" target="_blank">{{ file.file_name }}</a>
+    </tr>
+  </tbody>
+</table>

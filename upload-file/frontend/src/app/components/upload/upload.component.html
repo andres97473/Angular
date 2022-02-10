@@ -1,0 +1,18 @@
+<div>
+  <div>
+    <span>Adjunta tu file</span>
+    <input type="file" (change)="getFile($event)" />
+  </div>
+
+  <div class="mt-2">
+    <button (click)="sendFile()">Enviar Archivo</button>
+  </div>
+</div>
+
+<section class="mt-5">
+  <div>
+    <button type="button" [disabled]="!enviar" (click)="guardarArchivo()">
+      Guardar Registro
+    </button>
+  </div>
+</section>

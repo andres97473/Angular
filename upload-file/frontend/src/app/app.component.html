@@ -1,10 +1,5 @@
-<div>
-  <div>
-    <span>Adjunta tu file</span>
-    <input type="file" (change)="getFile($event)" />
-  </div>
+<app-navbar></app-navbar>
 
-  <div>
-    <button (click)="sendFile()">Enviar</button>
-  </div>
+<div class="container mt-5">
+  <router-outlet></router-outlet>
 </div>

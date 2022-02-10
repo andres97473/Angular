@@ -9,6 +9,10 @@ export class RestService {
   constructor(private http: HttpClient) {}
 
   sendPost(body: FormData): Observable<any> {
-    return this.http.post('http://localhost:3000/upload', body);
+    return this.http.post('http://localhost:4000/upload', body);
+  }
+
+  getFiles(): Observable<any> {
+    return this.http.get('http://localhost:4000/api/uploads');
   }
 }
