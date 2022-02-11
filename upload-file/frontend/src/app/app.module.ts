@@ -11,6 +11,7 @@ import { UploadComponent } from './components/upload/upload.component';
 import { ListFilesComponent } from './components/list-files/list-files.component';
 import { DropDownComponent } from './components/drop-down/drop-down.component';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { FormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     MaterialModule,
     FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

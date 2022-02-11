@@ -1,3 +1,20 @@
+<section>
+  <h4>Seleccione una Categoria</h4>
+  <mat-form-field appearance="fill">
+    <mat-label>Categorias</mat-label>
+    <mat-select>
+      <mat-option
+        *ngFor="let category of filesCategories"
+        [value]="category.id"
+        (click)="setCategoryId(category.id)"
+        >{{ category.category_name }}</mat-option
+      >
+    </mat-select>
+  </mat-form-field>
+</section>
+
+<hr />
+
 <div>
   <div>
     <span>Adjunta tu file</span>
@@ -16,3 +33,20 @@
     </button>
   </div>
 </section>
+
+<hr />
+
+<h1>formulario</h1>
+<form [formGroup]="formGroup">
+  <label for="registeredOn">Registered On</label>
+  <input name="registeredOn" formControlName="registeredOn" type="date" />
+  <label for="name">Name</label>
+  <input name="name" formControlName="name" type="text" />
+  <label for="email">E-mail</label>
+  <input name="email" formControlName="email" type="email" />
+  <label for="password">Password</label>
+  <input name="password" formControlName="password" type="password" />
+  <button (click)="register()" [disabled]="formGroup.invalid">
+    Register me!
+  </button>
+</form>
