@@ -1,0 +1,32 @@
+<section>
+  <select [(ngModel)]="selectedCountry.id" (change)="onSelect($event)">
+    <option *ngFor="let country of countries" [value]="country.id">
+      {{ country.name }}
+    </option>
+  </select>
+
+  <select>
+    <option *ngFor="let city of cities" [value]="city.id">
+      {{ city.name }}
+    </option>
+  </select>
+</section>
+
+<hr />
+
+<section>
+  <mat-accordion>
+    <mat-expansion-panel
+      (opened)="panelOpenState = true"
+      (closed)="panelOpenState = false"
+      *ngFor="let country of countries"
+    >
+      <mat-expansion-panel-header>
+        <mat-panel-title> {{ country.name }} </mat-panel-title>
+      </mat-expansion-panel-header>
+      <p class="files" *ngFor="let city of country.cities">
+        <a [href]="city.name" target="_blank">{{ city.name }}</a>
+      </p>
+    </mat-expansion-panel>
+  </mat-accordion>
+</section>

@@ -9,15 +9,24 @@ import { MaterialModule } from './material/material.module';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { UploadComponent } from './components/upload/upload.component';
 import { ListFilesComponent } from './components/list-files/list-files.component';
+import { DropDownComponent } from './components/drop-down/drop-down.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [AppComponent, NavbarComponent, UploadComponent, ListFilesComponent],
+  declarations: [
+    AppComponent,
+    NavbarComponent,
+    UploadComponent,
+    ListFilesComponent,
+    DropDownComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
     MaterialModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -9,14 +9,14 @@ import { RestService } from '../../services/rest.service';
 export class ListFilesComponent implements OnInit {
   files: any = [];
 
-  constructor(private restService: RestService) {}
+  constructor(private _restService: RestService) {}
 
   ngOnInit(): void {
     this.getFiles();
   }
 
   getFiles(): void {
-    this.restService.getFiles().subscribe((res) => {
+    this._restService.getFiles().subscribe((res) => {
       //console.log(res.data);
       this.files = res.data;
     });
