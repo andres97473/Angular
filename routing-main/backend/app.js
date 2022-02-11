@@ -15,9 +15,11 @@ const port = process.env.PORT || 4000;
 app.use(express.json());
 app.use(cors());
 
+// routes
 app.use("/api/users", userRouter);
 app.use("/api/uploads", uploadRouter);
 
+// enviar archivos a carpeta public
 // cargar archivos a la carpeta public
 const storage = multer.diskStorage({
   filename: function (res, file, cb) {
@@ -35,7 +37,7 @@ const upload = multer({
   storage: storage,
 });
 
-app.post("/upload", upload.single("myFile"), (req, res) => {
+app.post("/files", upload.single("myFile"), (req, res) => {
   const file = req.file.filename;
   console.log(file);
   res.send({ data: "ok", url: `http://localhost:4000/${file}` });
