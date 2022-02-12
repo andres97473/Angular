@@ -1,52 +1,38 @@
-<section>
-  <h4>Seleccione una Categoria</h4>
-  <mat-form-field appearance="fill">
-    <mat-label>Categorias</mat-label>
-    <mat-select>
-      <mat-option
-        *ngFor="let category of filesCategories"
-        [value]="category.id"
-        (click)="setCategoryId(category.id)"
-        >{{ category.category_name }}</mat-option
-      >
-    </mat-select>
-  </mat-form-field>
-</section>
-
-<hr />
-
-<div>
+<h1>Agregar Archivo</h1>
+<form [formGroup]="formGroup">
   <div>
-    <span>Adjunta tu file</span>
+    <span>Adjunta tu Archivo</span>
+    <br />
     <input type="file" (change)="getFile($event)" />
   </div>
 
+  <br />
+
   <div class="mt-2">
-    <button (click)="sendFile()">Enviar Archivo</button>
+    <button type="button" (click)="sendFile()">Enviar Archivo</button>
   </div>
-</div>
 
-<section class="mt-5">
-  <div>
-    <button type="button" [disabled]="!enviar" (click)="guardarArchivo()">
-      Guardar Registro
-    </button>
-  </div>
-</section>
+  <br />
 
-<hr />
+  <mat-form-field appearance="fill">
+    <mat-label>Categorias</mat-label>
+    <mat-select formControlName="id_category">
+      <mat-option *ngFor="let category of filesCategories" [value]="category.id"
+        >{{ category.category_name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 
-<h1>formulario</h1>
-<form [formGroup]="formGroup">
-  <label for="registeredOn">Registered On</label>
-  <input name="registeredOn" formControlName="registeredOn" type="date" />
-  <label for="name">Name</label>
-  <input name="name" formControlName="name" type="text" />
-  <label for="email">E-mail</label>
-  <input name="email" formControlName="email" type="email" />
-  <label for="password">Password</label>
-  <input name="password" formControlName="password" type="password" />
-  <button (click)="register()" [disabled]="formGroup.invalid">
+  <br />
+
+  <mat-form-field appearance="fill">
+    <mat-label>Nombre del archivo</mat-label>
+    <input matInput name="file_name" formControlName="file_name" type="text" />
+  </mat-form-field>
+
+  <br />
+
+  <button (click)="register()" [disabled]="formGroup.invalid || !enviar">
     Register me!
   </button>
 </form>

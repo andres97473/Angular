@@ -20,4 +20,8 @@ export class RestService {
   getFilesCategories(): Observable<any> {
     return this.http.get('http://localhost:4000/api/uploads/category');
   }
+
+  sendPostFiles(body: any): Observable<any> {
+    return this.http.post('http://localhost:4000/api/uploads', body);
+  }
 }

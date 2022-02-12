@@ -4,9 +4,9 @@ module.exports = {
   // files
   create: (data, callBack) => {
     pool.query(
-      `INSERT INTO files( file_name, extension, url, id_category)
-                    VALUES(?,?,?,?)`,
-      [data.file_name, data.extension, data.url, data.categoria],
+      `INSERT INTO files (file_name, extension, url, id_category) 
+      VALUES(?,?,?,?)`,
+      [data.file_name, data.extension, data.url, data.id_category],
       (error, results, fields) => {
         if (error) {
           callBack(error);
@@ -44,7 +44,7 @@ module.exports = {
   },
   getFilesCategory: (callBack) => {
     pool.query(
-      `SELECT id,category_name, descripcion FROM files_category`,
+      `SELECT id,category_name, descripcion FROM files_category ORDER BY category_name ASC`,
       [],
       (error, results, fields) => {
         if (error) {

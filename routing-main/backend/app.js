@@ -2,10 +2,23 @@ require("dotenv").config();
 const express = require("express");
 const multer = require("multer");
 const cors = require("cors");
+const fs = require("fs");
 const app = express();
 
 const userRouter = require("./api/users/user.router");
 const uploadRouter = require("./api/upload/upload.router");
+
+// Crear carpeta public si no existe
+if (fs.existsSync("public")) {
+  console.log("El directorio ya ha sido creado");
+} else {
+  fs.mkdir("public", (error) => {
+    if (error) {
+      console.log(error.message);
+    }
+    console.log("se creo el directorio public");
+  });
+}
 
 // manejar la direccion como una carpeta y no como una ruta
 app.use(express.static("./public"));

@@ -35,7 +35,7 @@ export class DropDownComponent implements OnInit {
     for (let country of this.countries) {
       const nCity = this.getCitiesCountryId(country.id);
       country.cities = nCity;
-      console.log(country);
+      //console.log(country);
     }
   }
 

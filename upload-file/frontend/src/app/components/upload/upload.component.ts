@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RestService } from '../../services/rest.service';
-import { FileCategoryI } from '../../models/file.interface';
+import { FileCategoryI, FileI } from '../../models/file.interface';
 import {
   FormBuilder,
   FormControl,
@@ -16,9 +16,9 @@ import {
 export class UploadComponent implements OnInit {
   public formGroup!: FormGroup;
 
+  private file: FileI = { file_name: '' };
   private fileTmp: any;
-  private url = '';
-  private extension = '';
+
   enviar: boolean;
 
   // files categories
@@ -38,43 +38,39 @@ export class UploadComponent implements OnInit {
   }
 
   private buildForm() {
-    const dateLength = 10;
-    const today = new Date().toISOString().substring(0, dateLength);
-    const name = 'JOHN DOE';
-    const minPassLength = 4;
     this.formGroup = this.formBuilder.group({
-      registeredOn: today,
-      name: [name.toLowerCase(), Validators.required],
-      email: ['john@angular.io', [Validators.required, Validators.email]],
-      password: [
-        '',
-        [Validators.required, Validators.minLength(minPassLength)],
-      ],
+      id_category: ['', Validators.required],
+      file_name: ['', Validators.required],
+      url: [''],
+      extension: [''],
     });
   }
 
   public register() {
-    const user = this.formGroup.value;
-    console.log(user);
+    let user = this.formGroup.value;
+    user.url = this.file.url;
+    user.extension = this.file.extension;
+    //console.log(user);
+
+    this.restService.sendPostFiles(user).subscribe((res) => {
+      //console.log(res);
+    });
+    this.enviar = false;
   }
 
   getFilesCategories(): FileCategoryI[] {
     this.restService.getFilesCategories().subscribe((res) => {
-      console.log(res.data);
+      //console.log(res.data);
       this.filesCategories = res.data;
     });
     return this.filesCategories;
-  }
-
-  setCategoryId(id: number) {
-    console.log(id);
   }
 
   getFile($event: any): void {
     //console.log($event);
     const [file] = $event.target.files;
     //console.log(file);
-    this.extension = file.name.split('.').pop();
+    this.file.extension = file.name.split('.').pop();
     //console.log(this.extension);
 
     this.fileTmp = {
@@ -91,21 +87,11 @@ export class UploadComponent implements OnInit {
 
     this.restService.sendPost(body).subscribe((res) => {
       // console.log(res.url);
-      this.url = res.url;
+      this.file.url = res.url;
 
       this.enviar = true;
 
       //console.log(this.url);
     });
-  }
-
-  guardarArchivo() {
-    console.log(
-      'Registro enviado, url:',
-      this.url,
-      ' extension: ',
-      this.extension
-    );
-    this.enviar = false;
   }
 }
