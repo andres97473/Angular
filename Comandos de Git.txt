@@ -25,5 +25,15 @@ git pull
 git checkout -- .
 
 
+4. crear tag para manejar versiones
+git tag -a v1.0.0 -m "Diseño listo"
+
+5. confirmar los tag creados
+git tag
+
+6. desplegar tags
+git push --tags
+
+
 
 
