@@ -15,11 +15,14 @@ git commit -m "Commit 2021-07-23.19.16"
 git push
 
 
-
 2. Descargar cambios
 
 >> Descargar los cambios del repositorio
 git pull
+
+
+3. Restaurar cambios desde el ultimo commit 
+git checkout -- .
 
 
 
