@@ -1,0 +1,10 @@
+// Actualizar proyecto
+
+ng update @angular/core@13 @angular/cli@13
+ng update @angular/material
+
+// Actualizar angular global
+npm uninstall -g @angular/cli
+npm cache clean --force
+npm i -g @angular/cli
+ng --version
