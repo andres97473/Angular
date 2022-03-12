@@ -3,6 +3,9 @@
 ng update @angular/core@13 @angular/cli@13
 ng update @angular/material
 
+// forzar actualizacion
+ng update @angular/cli @angular/core --force
+
 // Actualizar angular global
 npm uninstall -g @angular/cli
 npm cache clean --force
