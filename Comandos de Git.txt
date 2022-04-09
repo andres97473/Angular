@@ -2,6 +2,25 @@
 git config --global user.name "andres97473"
 git config --global user.email andres97473@hotmail.com
 
+
+
+>> Subir carpeta a git
+1. crear repositorio en este caso Ionic
+
+2. ingresar a la carpeta que se va a subir desde consola
+
+3.ejecutar los comandos
+git init
+git add .
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/andres97473/Ionic.git
+git push -u origin main
+
+
+
+
+
 1. Subir cambios al repositorio
 
 >> Agregar carpeta a los cambios
