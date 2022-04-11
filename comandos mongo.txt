@@ -1,0 +1,223 @@
+// ver base de datos seleccionada
+db
+
+// ver todas las bases de datos
+show dbs
+
+// mostrar los metodos que puede ejecutar la base de datos
+db.help()
+
+// el comamdo use selecciona una base de datos y si no existe la crea
+use webstore
+
+// crear coleccion e insertar un dato dato en la coleccion
+db.products.insert({"name":"laptop"})
+
+// ver colecciones
+show collections
+
+// eliminar base de datos seleccionada
+db.dropDatabase()
+
+// crear coleccion en blanco
+db.createCollection("users")
+db.createCollection("products")
+
+// eliminar coleccion
+db.products.drop()
+
+// insertar datos en coleccion
+db.products.insert({
+    "nombre":"laptop",
+    "precio":40.2,
+    "active":false,
+    "create_at": new Date("12/12/2020"),
+    "factucturer":{
+        "name":"dell",
+        "version":"xps",
+        "location":{
+            "city":"usa",
+            "address":"carrera 4"
+        }
+    }
+})
+
+// obtener documentos de la coleccion products
+db.products.find()
+
+// organizar resultados
+db.products.find().pretty()
+
+// insertar nuevos registros
+db.products.insert({"name":"Keyboard"})
+db.products.insert({"name":"laptop","price":999.99})
+
+
+// insertar varios registros a la vez
+db.products.insert([
+    {
+        "name":"mouse",
+        "description":"razer mouse",
+        "tags":["computers","gaming"],
+        "quantity":14,
+        "created_at": new Date()
+    },
+    {
+        "name":"monitor",
+        "description":"lg monitor",
+        "tags":["computers","gaming"],
+        "quantity":3,
+        "created_at": new Date()
+    }
+])
+
+
+// buscar datos por nombre
+db.products.find({name:"mouse"}).pretty()
+db.products.find({price:999.99}).pretty()
+db.products.find({tags:"computers", name:"monitor"}).pretty()
+
+
+// retornar el primer resultado
+db.products.findOne({tags:"computers"})
+
+// seleccionar los campos que deseo retornar
+db.products.findOne({tags:"computers"},{name:1,description:1})
+db.products.findOne({tags:"computers"},{name:1,description:1,_id:0})
+
+
+// ordenar resultados
+db.products.find({tags:"computers"}).sort({name:1})
+db.products.find({tags:"computers"}).sort({name:1}).pretty()
+
+
+// limitar resultados
+db.products.find().limit(2)
+
+
+// contar resultados
+db.products.count()
+
+
+
+
+// hacer operaciones y funciones
+// imprimir el nombre de cada producto
+db.products.find().forEach( product => print("Product Name: " + product.name))
+
+// imprimir el precio de cada producto, los productos sin precio retorna undefined
+db.products.find().forEach( product => print("Product price: " + product.price))
+
+
+
+
+
+// actualizar datos, metodo update primero busca y luego actualiza db.products.update({},{}), en este caso se remplaza el documento por lo que solo quedaria el precio
+db.products.update({name:"Keyboard"},{price:99.99})
+
+// actualizar datos para restaurar el nombre y convervar el precio
+db.products.update({price:99.99},{name:"Keyboard",price:99.99})
+
+// la solucion para solo actualizar el campo que se desea o los campos es con el operador $set
+db.products.update({name:"laptop"},{$set:{description:"lg gram laptop"}})
+
+
+// se puede insertar un dato si no lo encuentra para actualizar con upsert:true
+db.products.update({name:"desktop"},{$set:{description:"Gaming Desktop"}}, {upsert:true})
+
+// sumar valor al precio
+db.products.update({name:"Keyboard"},{$inc:{price:0.01}})
+db.products.update({name:"laptop"},{$inc:{price:0.01}})
+
+
+// renombrar una propiedad
+db.products.update({name:"laptop"},{$rename:{"name":"nombre"}})
+
+
+
+// eliminar documento por nombre
+db.products.remove({name:"Keyboard"})
+
+
+
+
+
+// crear reporte en csv
+// crear coleccion de pais
+db.pais.insert([
+    {"codigo":1, "nombre":"Colombia"},
+    {"codigo":2, "nombre":"Peru"},
+    {"codigo":3, "nombre":"EEUU"},
+])
+
+// ver datos de pais
+db.pais.find().pretty()
+
+
+// crear coleccion de ciudad
+db.ciudad.insert([
+    {"codigo_pais":1, "nombre":"BOGOTA"},
+    {"codigo_pais":1, "nombre":"MEDELLIN"},
+    {"codigo_pais":1, "nombre":"CALI"},
+    {"codigo_pais":2, "nombre":"LIMA"},
+    {"codigo_pais":3, "nombre":"NEW-TORK"},
+])
+
+// ver datos de ciudad
+db.ciudad.find().pretty()
+
+
+// crear cursor
+var cursor = db.getCollection('ciudad').find({},{_id:0,codigo_pais:1,nombre:1});
+
+// se puede ver el cursor escribiendo en la consola
+cursor
+
+// crear contador
+var contador = 0;
+
+// recorrer el cursor
+while (cursor.hasNext()) {
+    var record = cursor.next();
+    if (contador==0) {
+        print("CODIGO_PAIS,NOMBRE_PAIS,CIUDAD")
+        contador ++;        
+    }
+    var record2 = db.pais.findOne({"codigo": record.codigo_pais},{_id:0,nombre:1});
+    print(record.codigo_pais,record2.nombre,record.nombre)    
+}
+
+// todo el codigo de la consulta
+
+
+var cursor = db.getCollection('ciudad').find({},{_id:0,codigo_pais:1,nombre:1});
+var contador = 0;
+while (cursor.hasNext()) {
+    var record = cursor.next();
+    if (contador==0) {
+        print("CODIGO_PAIS,NOMBRE_PAIS,CIUDAD")
+        contador ++;        
+    }
+    var record2 = db.pais.findOne({"codigo": record.codigo_pais},{_id:0,nombre:1});
+    print(`${record.codigo_pais},${record2.nombre},${record.nombre}`)    
+}
+
+// crear funcion con la consulta
+function resultado(){
+    var cursor = db.getCollection('ciudad').find({},{_id:0,codigo_pais:1,nombre:1});
+    var contador = 0;
+    while (cursor.hasNext()) {
+        var record = cursor.next();
+        if (contador==0) {
+            print("CODIGO_PAIS,NOMBRE_PAIS,CIUDAD")
+            contador ++;        
+        }
+        var record2 = db.pais.findOne({"codigo": record.codigo_pais},{_id:0,nombre:1});
+        print(`${record.codigo_pais},${record2.nombre},${record.nombre}`)    
+    }
+}
+
+// llamar funcion 
+resultado()
+
+
