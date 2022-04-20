@@ -1,0 +1,16 @@
+>> tener instalado heroku cli
+
+>> verificar version
+heroku --version
+
+>> login en heroku, se debe hacer desde la carpeta raiz del proyecto, escribir el comando y presionar tecla para confirmar, se abre pagina y se confirma
+heroku login
+
+>> crear el heroku remote, el git init ya esta iniciado por lo que no es necesario, se debe copiar el codigo de la documentacion de heroku que tiene nuestro proyecto
+heroku git:remote -a adminpro-backend5
+
+>> ver version del remote, nos salen 4 por que tenemos los dos de git y los dos de heroku
+git remote -v
+
+>> para subir los cambios a heroku primero se hace el git add . el git commit
+git push heroku
