@@ -121,6 +121,10 @@ db.products.update({price:99.99},{name:"Keyboard",price:99.99})
 // la solucion para solo actualizar el campo que se desea o los campos es con el operador $set
 db.products.update({name:"laptop"},{$set:{description:"lg gram laptop"}})
 
+// actualizar mas de un campo
+// la solucion para solo actualizar el campo que se desea o los campos es con el operador $set
+db.products.update({name:"laptop"},{$set:{name:"laptop 2", description:"lg gram laptop"}})
+
 
 // se puede insertar un dato si no lo encuentra para actualizar con upsert:true
 db.products.update({name:"desktop"},{$set:{description:"Gaming Desktop"}}, {upsert:true})
