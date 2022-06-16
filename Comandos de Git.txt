@@ -3,6 +3,10 @@ git config --global user.name "andres97473"
 git config --global user.email andres97473@hotmail.com
 
 
+>> forzar regresar al ultimo commit quitanto todos los cambios
+git reset --hard
+
+
 
 >> Subir carpeta a git
 1. crear repositorio en este caso Ionic
