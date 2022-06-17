@@ -82,6 +82,6 @@ export class PdfComponent implements OnInit {
 
     const pdf = pdfMake.createPdf(pdfDefinition);
 
-    const open = pdf.open();
+    pdf.open({}, window.open('_blank'));
   }
 }
