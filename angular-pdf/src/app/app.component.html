@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="row">
+    <div id="htmlData">
+      <h2>Lista de videojuegos en stock</h2>
+      <table class="table mt-4">
+        <thead>
+          <tr class="table-primary">
+            <th scope="col">Personaje</th>
+            <th scope="col">Nacimiento</th>
+            <th scope="col">Estado</th>
+            <th scope="col">Nickname</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let c of breakingBadData">
+            <th>{{ c.name }}</th>
+            <td>{{ c.birthday }}</td>
+            <td>{{ c.status }}</td>
+            <td>{{ c.nickname }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div>
+  <button
+    class="btn col col-lg-4 btn-danger btn-block ml-4"
+    (click)="downloadPDF()"
+  >
+    Download PDF
+  </button>
+</div>
