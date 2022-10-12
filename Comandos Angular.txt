@@ -41,6 +41,11 @@ npm i sweetalert2 --save
 npm uninstall sweetalert2
 
 
+>> Instalar angular material
+ng add @angular/material
+npm uninstall @angular/material
+
+
 
 >> Instalar libreria de firebase angular AngularFire
 npm install firebase @angular/fire --save
