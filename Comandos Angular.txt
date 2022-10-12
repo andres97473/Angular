@@ -43,7 +43,10 @@ npm uninstall sweetalert2
 
 >> Instalar angular material
 ng add @angular/material
+
+>> Desnstalar angular material
 npm uninstall @angular/material
+borrar en el archivo angular.json todas las lienas que digan material
 
 
 
