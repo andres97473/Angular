@@ -15,3 +15,6 @@ ng --version
 
 // Actualizar de css a scss
 ng add schematics-scss-migrate
+y
+css
+scss
