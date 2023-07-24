@@ -1,0 +1,16 @@
+<input type="file" (change)="fileChangeEvent($event)" />
+
+<div class="container_cropper">
+  <image-cropper
+    class="cropper_img"
+    [imageChangedEvent]="imageChangedEvent"
+    [maintainAspectRatio]="true"
+    [aspectRatio]="4 / 4"
+    format="png"
+    (imageCropped)="imageCropped($event)"
+    (imageLoaded)="imageLoaded($event)"
+    (cropperReady)="cropperReady()"
+    (loadImageFailed)="loadImageFailed()"
+  ></image-cropper>
+  <img class="cropper_img" [src]="croppedImage" />
+</div>

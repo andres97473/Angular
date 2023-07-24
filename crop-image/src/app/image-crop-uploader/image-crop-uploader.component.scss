@@ -1,0 +1,11 @@
+.container_cropper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: nowrap;
+  padding: 25px;
+}
+
+.cropper_img {
+  height: 200px;
+}
