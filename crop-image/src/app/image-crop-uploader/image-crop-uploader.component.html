@@ -1,16 +1,10 @@
 <input type="file" (change)="fileChangeEvent($event)" />
-
 <div class="container_cropper">
-  <image-cropper
-    class="cropper_img"
-    [imageChangedEvent]="imageChangedEvent"
-    [maintainAspectRatio]="true"
-    [aspectRatio]="4 / 4"
-    format="png"
-    (imageCropped)="imageCropped($event)"
-    (imageLoaded)="imageLoaded($event)"
-    (cropperReady)="cropperReady()"
-    (loadImageFailed)="loadImageFailed()"
-  ></image-cropper>
-  <img class="cropper_img" [src]="croppedImage" />
+    <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="4 / 4" format="png" (imageCropped)="imageCropped($event)"></image-cropper>
+    <div class="container_prev">
+        <img class="oscurecer" [src]="croppedImage" />
+        <img class="cropper_img" [src]="croppedImage" />
+    </div>
 </div>
+
+<button (click)="sendFile()">Enviar imagen</button>
