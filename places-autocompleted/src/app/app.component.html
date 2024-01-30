@@ -1,0 +1,9 @@
+<input #ngxPlaces="ngx-places"
+               class="input"
+               type="text"
+               matInput
+               style="width: 100%;"
+               [options]="options"
+               [formControl]="autocompleteInputControl"
+               ngx-gp-autocomplete
+               (onAddressChange)="selectAddress($event)">

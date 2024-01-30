@@ -1,11 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import {
-  ImageCroppedEvent,
-  LoadedImage,
-  base64ToFile,
-} from 'ngx-image-cropper';
+import { ImageCroppedEvent } from 'ngx-image-cropper';
 
 @Component({
   selector: 'app-image-crop-uploader',
@@ -28,7 +24,8 @@ export class ImageCropUploaderComponent {
     if (event.objectUrl) {
       this.croppedImage = this.sanitizer.bypassSecurityTrustUrl(
         event.objectUrl
-      );
+        
+        );
 
       // event.blob can be used to upload the cropped image
     }
@@ -41,7 +38,6 @@ export class ImageCropUploaderComponent {
 
   sendFile(): void {
     if (this.selectedFile) {
-      console.log(this.selectedFile);
 
       const formData = new FormData();
       formData.append('idAlbum', '64b1e1836671cfe212376669');
