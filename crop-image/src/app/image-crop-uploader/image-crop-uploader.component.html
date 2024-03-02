@@ -1,0 +1,20 @@
+<div class="cropper">
+  <input type="file" (change)="fileChangeEvent($event)" />
+  <div class="card_cropper">
+    <div class="card_cropper_header">Seleccione su imagen</div>
+    <div class="container_cropper">
+      <image-cropper
+        [imageChangedEvent]="imageChangedEvent"
+        [maintainAspectRatio]="true"
+        [aspectRatio]="4 / 4"
+        format="png"
+        (imageCropped)="imageCropped($event)"
+      ></image-cropper>
+      <div class="container_prev">
+        <img class="oscurecer" [src]="croppedImage" />
+        <img class="cropper_img" [src]="croppedImage" />
+      </div>
+    </div>
+  </div>
+  <button (click)="sendFile()">Enviar imagen</button>
+</div>
